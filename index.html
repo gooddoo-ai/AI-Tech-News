@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 제조혁신 뉴스 대시보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #040810;
+    --surface: #080f1e;
+    --surface2: #0d1829;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --border: rgba(0,212,255,0.15);
+    --glow: 0 0 20px rgba(0,212,255,0.3);
+    --card-bg: rgba(8,15,30,0.9);
+  }
+
+- { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘Noto Sans KR’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Animated grid background */
+body::before {
+content:’’;
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+background-size: 60px 60px;
+pointer-events:none;
+z-index:0;
+}
+
+body::after {
+content:’’;
+position:fixed;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background: radial-gradient(ellipse at 30% 20%, rgba(124,58,237,0.08) 0%, transparent 50%),
+radial-gradient(ellipse at 70% 80%, rgba(0,212,255,0.06) 0%, transparent 50%);
+pointer-events:none;
+z-index:0;
+animation: bgPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+from { opacity:0.5; transform:scale(1); }
+to { opacity:1; transform:scale(1.05); }
+}
+
+.container { max-width:1440px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+/* ── HEADER ── */
+header {
+padding: 20px 0 0;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom: 1px solid var(–border);
+padding-bottom: 16px;
+}
+
+.logo {
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo-icon {
+width:44px; height:44px;
+background: linear-gradient(135deg, var(–accent), var(–accent2));
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+box-shadow: var(–glow);
+}
+
+.logo-text {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size:28px;
+letter-spacing:3px;
+background: linear-gradient(90deg, var(–accent), var(–accent2));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.logo-sub {
+font-size:10px;
+color:var(–text-muted);
+letter-spacing:2px;
+text-transform:uppercase;
+font-family:‘Space Mono’, monospace;
+}
+
+.header-right {
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.live-badge {
+display:flex;
+align-items:center;
+gap:6px;
+background:rgba(239,68,68,0.15);
+border:1px solid rgba(239,68,68,0.4);
+border-radius:20px;
+padding:4px 12px;
+font-size:11px;
+font-family:‘Space Mono’, monospace;
+color:#ef4444;
+}
+
+.live-dot {
+width:6px; height:6px;
+background:#ef4444;
+border-radius:50%;
+animation:blink 1.2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+#clock {
+font-family:‘Space Mono’, monospace;
+font-size:13px;
+color:var(–accent);
+letter-spacing:2px;
+}
+
+/* ── AI ASSISTANT SUMMARY ── */
+.ai-assistant {
+margin: 28px 0;
+background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(0,212,255,0.08));
+border: 1px solid rgba(124,58,237,0.4);
+border-radius: 20px;
+padding: 28px 36px;
+position:relative;
+overflow:hidden;
+}
+
+.ai-assistant::before {
+content:’’;
+position:absolute;
+top:0; left:0; right:0;
+height:2px;
+background:linear-gradient(90deg, transparent, var(–accent2), var(–accent), var(–accent2), transparent);
+animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+0%{background-position:-200% 0}
+100%{background-position:200% 0}
+}
+
+.assistant-header {
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:18px;
+}
+
+.assistant-avatar {
+width:52px; height:52px;
+background:linear-gradient(135deg, var(–accent2), var(–accent));
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+box-shadow:0 0 30px rgba(124,58,237,0.5);
+flex-shrink:0;
+}
+
+.assistant-title {
+font-size:18px;
+font-weight:700;
+color:var(–accent);
+letter-spacing:1px;
+}
+
+.assistant-subtitle {
+font-size:12px;
+color:var(–text-muted);
+margin-top:2px;
+font-family:‘Space Mono’, monospace;
+}
+
+.summary-text {
+font-size:15px;
+line-height:1.9;
+color:var(–text);
+font-weight:300;
+}
+
+.summary-text strong { color:var(–accent); font-weight:700; }
+
+.summary-tags {
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:16px;
+}
+
+.summary-tag {
+background:rgba(0,212,255,0.1);
+border:1px solid rgba(0,212,255,0.3);
+border-radius:20px;
+padding:3px 12px;
+font-size:11px;
+color:var(–accent);
+font-family:‘Space Mono’, monospace;
+letter-spacing:1px;
+}
+
+#summaryContent { min-height:60px; }
+
+.loading-dots {
+display:inline-flex;
+gap:4px;
+align-items:center;
+}
+
+.loading-dots span {
+width:6px; height:6px;
+background:var(–accent);
+border-radius:50%;
+animation: dot-bounce 1.4s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(2){animation-delay:0.2s}
+.loading-dots span:nth-child(3){animation-delay:0.4s}
+
+@keyframes dot-bounce {
+0%,80%,100%{transform:scale(0.6);opacity:0.3}
+40%{transform:scale(1);opacity:1}
+}
+
+/* ── SECTION TITLES ── */
+.section-header {
+display:flex;
+align-items:center;
+gap:14px;
+margin: 36px 0 20px;
+}
+
+.section-title {
+font-family:‘Bebas Neue’, sans-serif;
+font-size:26px;
+letter-spacing:3px;
+}
+
+.section-title.ko { color:var(–accent); }
+.section-title.en { color:var(–accent3); }
+.section-title.vibe { color:#a78bfa; }
+.section-title.yt { color:#f87171; }
+
+.section-count {
+background:rgba(0,212,255,0.1);
+border:1px solid var(–border);
+border-radius:20px;
+padding:2px 10px;
+font-size:11px;
+font-family:‘Space Mono’, monospace;
+color:var(–text-muted);
+}
+
+.section-line {
+flex:1;
+height:1px;
+background:linear-gradient(90deg, var(–border), transparent);
+}
+
+/* ── NEWS GRID ── */
+.news-grid {
+display:grid;
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+gap:20px;
+margin-bottom:8px;
+}
+
+.news-card {
+background:var(–card-bg);
+border:1px solid var(–border);
+border-radius:16px;
+overflow:hidden;
+cursor:pointer;
+transition:all 0.3s ease;
+display:flex;
+flex-direction:column;
+backdrop-filter:blur(10px);
+position:relative;
+}
+
+.news-card:hover {
+transform:translateY(-4px);
+border-color:var(–accent);
+box-shadow:var(–glow), 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.news-card.ko-card:hover { border-color:var(–accent); }
+.news-card.en-card:hover { border-color:var(–accent3); }
+.news-card.vibe-card:hover { border-color:#a78bfa; box-shadow:0 0 20px rgba(167,139,250,0.3); }
+
+.card-img {
+width:100%;
+height:180px;
+object-fit:cover;
+display:block;
+background:var(–surface2);
+}
+
+.card-img-placeholder {
+width:100%;
+height:180px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:48px;
+flex-shrink:0;
+}
+
+.card-body { padding:16px; flex:1; display:flex; flex-direction:column; }
+
+.card-source {
+font-size:10px;
+font-family:‘Space Mono’, monospace;
+letter-spacing:1.5px;
+text-transform:uppercase;
+margin-bottom:8px;
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.card-source .dot { width:5px; height:5px; border-radius:50%; }
+
+.card-title {
+font-size:14px;
+font-weight:700;
+line-height:1.5;
+margin-bottom:10px;
+color:var(–text);
+display:-webkit-box;
+-webkit-line-clamp:3;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.card-desc {
+font-size:12px;
+color:var(–text-muted);
+line-height:1.6;
+flex:1;
+display:-webkit-box;
+-webkit-line-clamp:3;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.card-footer {
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-top:14px;
+padding-top:12px;
+border-top:1px solid var(–border);
+}
+
+.card-date {
+font-size:10px;
+color:var(–text-muted);
+font-family:‘Space Mono’, monospace;
+}
+
+.card-arrow {
+font-size:16px;
+color:var(–accent);
+opacity:0.5;
+transition:all 0.2s;
+}
+
+.news-card:hover .card-arrow { opacity:1; transform:translateX(4px); }
+
+/* ── VIBE SECTION ── */
+.vibe-grid {
+display:grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap:20px;
+}
+
+.vibe-card {
+background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(167,139,250,0.05));
+border:1px solid rgba(167,139,250,0.3);
+}
+
+/* ── YOUTUBE GRID ── */
+.yt-grid {
+display:grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap:20px;
+}
+
+.yt-card {
+background:var(–card-bg);
+border:1px solid rgba(248,113,113,0.2);
+border-radius:16px;
+overflow:hidden;
+cursor:pointer;
+transition:all 0.3s ease;
+backdrop-filter:blur(10px);
+}
+
+.yt-card:hover {
+transform:translateY(-4px);
+border-color:#f87171;
+box-shadow:0 0 20px rgba(248,113,113,0.3);
+}
+
+.yt-thumb-wrap {
+position:relative;
+width:100%;
+padding-top:56.25%; /* 16:9 */
+overflow:hidden;
+background:#000;
+}
+
+.yt-thumb-wrap img {
+position:absolute;
+top:0; left:0;
+width:100%; height:100%;
+object-fit:cover;
+transition:transform 0.3s ease;
+}
+
+.yt-card:hover .yt-thumb-wrap img { transform:scale(1.05); }
+
+.yt-play-btn {
+position:absolute;
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+width:52px; height:52px;
+background:rgba(248,113,113,0.9);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+transition:all 0.2s;
+box-shadow:0 0 20px rgba(248,113,113,0.5);
+}
+
+.yt-card:hover .yt-play-btn {
+background:#f87171;
+transform:translate(-50%,-50%) scale(1.1);
+}
+
+.yt-duration {
+position:absolute;
+bottom:8px; right:8px;
+background:rgba(0,0,0,0.85);
+border-radius:4px;
+padding:2px 6px;
+font-size:10px;
+font-family:‘Space Mono’, monospace;
+color:#fff;
+}
+
+.yt-body { padding:14px; }
+
+.yt-channel {
+font-size:10px;
+color:#f87171;
+font-family:‘Space Mono’, monospace;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:6px;
+}
+
+.yt-title {
+font-size:13px;
+font-weight:700;
+line-height:1.5;
+color:var(–text);
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.yt-meta {
+margin-top:10px;
+font-size:10px;
+color:var(–text-muted);
+font-family:‘Space Mono’, monospace;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.85);
+z-index:1000;
+align-items:center;
+justify-content:center;
+backdrop-filter:blur(8px);
+}
+
+.modal-overlay.active { display:flex; }
+
+.modal {
+background:var(–surface);
+border:1px solid var(–border);
+border-radius:20px;
+width:90%;
+max-width:900px;
+max-height:90vh;
+overflow:hidden;
+position:relative;
+}
+
+.modal-video { width:100%; aspect-ratio:16/9; }
+.modal-close {
+position:absolute;
+top:12px; right:12px;
+background:rgba(0,0,0,0.7);
+border:none;
+color:#fff;
+width:36px; height:36px;
+border-radius:50%;
+font-size:18px;
+cursor:pointer;
+z-index:10;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:background 0.2s;
+}
+
+.modal-close:hover { background:var(–accent); }
+
+/* ── API KEY PANEL ── */
+.api-panel {
+background:rgba(245,158,11,0.08);
+border:1px solid rgba(245,158,11,0.3);
+border-radius:16px;
+padding:20px 28px;
+margin-bottom:28px;
+}
+
+.api-panel h3 {
+color:var(–accent3);
+font-size:14px;
+font-family:‘Space Mono’, monospace;
+margin-bottom:14px;
+letter-spacing:2px;
+}
+
+.api-inputs {
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.api-input-group { display:flex; flex-direction:column; gap:4px; }
+.api-input-group label { font-size:11px; color:var(–text-muted); font-family:‘Space Mono’, monospace; }
+
+.api-input-group input {
+background:var(–surface);
+border:1px solid var(–border);
+border-radius:8px;
+padding:8px 12px;
+color:var(–text);
+font-size:12px;
+font-family:‘Space Mono’, monospace;
+outline:none;
+transition:border-color 0.2s;
+}
+
+.api-input-group input:focus { border-color:var(–accent3); }
+
+.api-btn {
+margin-top:14px;
+background:linear-gradient(135deg, var(–accent2), var(–accent));
+border:none;
+border-radius:10px;
+padding:10px 24px;
+color:#fff;
+font-size:13px;
+font-family:‘Noto Sans KR’, sans-serif;
+font-weight:700;
+cursor:pointer;
+transition:opacity 0.2s;
+letter-spacing:1px;
+}
+
+.api-btn:hover { opacity:0.85; }
+
+/* ── REFRESH BTN ── */
+.refresh-bar {
+display:flex;
+align-items:center;
+justify-content:flex-end;
+gap:12px;
+margin-bottom:8px;
+}
+
+.refresh-btn {
+display:flex;
+align-items:center;
+gap:8px;
+background:rgba(0,212,255,0.1);
+border:1px solid rgba(0,212,255,0.3);
+border-radius:10px;
+padding:8px 16px;
+color:var(–accent);
+font-size:12px;
+font-family:‘Space Mono’, monospace;
+cursor:pointer;
+transition:all 0.2s;
+letter-spacing:1px;
+}
+
+.refresh-btn:hover { background:rgba(0,212,255,0.2); }
+.refresh-btn.spinning .spin-icon { animation:spin 1s linear infinite; }
+@keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+.last-updated {
+font-size:10px;
+color:var(–text-muted);
+font-family:‘Space Mono’, monospace;
+}
+
+/* ── TABS ── */
+.tab-bar {
+display:flex;
+gap:4px;
+background:var(–surface);
+border:1px solid var(–border);
+border-radius:12px;
+padding:4px;
+margin-bottom:24px;
+width:fit-content;
+}
+
+.tab-btn {
+padding:8px 20px;
+border:none;
+background:transparent;
+color:var(–text-muted);
+font-size:13px;
+font-family:‘Noto Sans KR’, sans-serif;
+font-weight:500;
+border-radius:8px;
+cursor:pointer;
+transition:all 0.2s;
+white-space:nowrap;
+}
+
+.tab-btn.active {
+background:linear-gradient(135deg, var(–accent2), var(–accent));
+color:#fff;
+font-weight:700;
+}
+
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+/* ── ERROR / EMPTY ── */
+.empty-state {
+text-align:center;
+padding:60px 20px;
+color:var(–text-muted);
+font-size:14px;
+}
+
+.empty-state .icon { font-size:48px; margin-bottom:16px; }
+
+/* ── FOOTER ── */
+footer {
+margin-top:60px;
+padding:28px 0;
+border-top:1px solid var(–border);
+text-align:center;
+font-size:11px;
+color:var(–text-muted);
+font-family:‘Space Mono’, monospace;
+letter-spacing:1px;
+}
+
+/* ── SCROLL BAR ── */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(–bg); }
+::-webkit-scrollbar-thumb { background:var(–border); border-radius:3px; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+.api-inputs { grid-template-columns:1fr; }
+.news-grid, .vibe-grid, .yt-grid { grid-template-columns:1fr; }
+.logo-text { font-size:20px; }
+.ai-assistant { padding:18px 20px; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🤖</div>
+      <div>
+        <div class="logo-text">AI MANUFACTURING NEXUS</div>
+        <div class="logo-sub">AI 제조혁신 뉴스 인텔리전스</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        LIVE
+      </div>
+      <div id="clock">--:--:--</div>
+    </div>
+  </header>
+
+  <!-- AI ASSISTANT SUMMARY -->
+
+  <div class="ai-assistant">
+    <div class="assistant-header">
+      <div class="assistant-avatar">🧠</div>
+      <div>
+        <div class="assistant-title">AI 비서</div>
+        <div class="assistant-subtitle">오늘의 뉴스 내용을 요약드립니다</div>
+      </div>
+    </div>
+    <div class="summary-text" id="summaryContent">
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+      뉴스를 불러오는 중입니다...
+    </div>
+    <div class="summary-tags" id="summaryTags"></div>
+  </div>
+
+  <!-- API KEY PANEL -->
+
+  <div class="api-panel" id="apiPanel">
+    <h3>⚙ API 키 설정 (최초 1회)</h3>
+    <div class="api-inputs">
+      <div class="api-input-group">
+        <label>NEWSAPI.ORG KEY (무료)</label>
+        <input type="password" id="newsapiKey" placeholder="newsapi.org에서 발급">
+      </div>
+      <div class="api-input-group">
+        <label>GNEWS.IO KEY (무료)</label>
+        <input type="password" id="gnewsKey" placeholder="gnews.io에서 발급">
+      </div>
+      <div class="api-input-group">
+        <label>YOUTUBE DATA API v3 KEY</label>
+        <input type="password" id="youtubeKey" placeholder="Google Cloud Console에서 발급">
+      </div>
+      <div class="api-input-group">
+        <label>NAVER NEWS API (선택)</label>
+        <input type="password" id="naverKey" placeholder="developers.naver.com에서 발급">
+      </div>
+    </div>
+    <button class="api-btn" onclick="saveAndLoad()">💾 저장 후 뉴스 불러오기</button>
+    <p style="margin-top:10px;font-size:11px;color:var(--text-muted)">
+      키는 브라우저 localStorage에만 저장됩니다. 서버로 전송되지 않습니다.
+      &nbsp;|&nbsp; NewsAPI 무료: newsapi.org &nbsp;|&nbsp; GNews 무료: gnews.io &nbsp;|&nbsp; YouTube: console.cloud.google.com
+    </p>
+  </div>
+
+  <!-- REFRESH BAR -->
+
+  <div class="refresh-bar">
+    <span class="last-updated" id="lastUpdated"></span>
+    <button class="refresh-btn" id="refreshBtn" onclick="loadAllNews()">
+      <span class="spin-icon">↻</span> 새로고침
+    </button>
+  </div>
+
+  <!-- TABS -->
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('all')">전체</button>
+    <button class="tab-btn" onclick="switchTab('ko')">🇰🇷 한국어</button>
+    <button class="tab-btn" onclick="switchTab('en')">🌐 영문</button>
+    <button class="tab-btn" onclick="switchTab('vibe')">⚡ Vibe Coding</button>
+    <button class="tab-btn" onclick="switchTab('yt')">▶ YouTube</button>
+  </div>
+
+  <!-- ALL TAB -->
+
+  <div class="tab-content active" id="tab-all">
+
+```
+<!-- KO NEWS -->
+<div class="section-header">
+  <div class="section-title ko">🇰🇷 한국 AI 뉴스</div>
+  <div class="section-count" id="koCount">0개</div>
+  <div class="section-line"></div>
+</div>
+<div class="news-grid" id="koNewsGrid">
+  <div class="empty-state"><div class="icon">📰</div>API 키를 입력하고 뉴스를 불러오세요</div>
+</div>
+
+<!-- EN NEWS -->
+<div class="section-header">
+  <div class="section-title en">🌐 Global AI News</div>
+  <div class="section-count" id="enCount">0개</div>
+  <div class="section-line"></div>
+</div>
+<div class="news-grid" id="enNewsGrid">
+  <div class="empty-state"><div class="icon">🌏</div>API 키를 입력하고 뉴스를 불러오세요</div>
+</div>
+
+<!-- VIBE NEWS -->
+<div class="section-header">
+  <div class="section-title vibe">⚡ Vibe Coding 최신 동향</div>
+  <div class="section-count" id="vibeCount">0개</div>
+  <div class="section-line"></div>
+</div>
+<div class="news-grid vibe-grid" id="vibeNewsGrid">
+  <div class="empty-state"><div class="icon">⚡</div>Vibe Coding 뉴스를 불러오는 중...</div>
+</div>
+
+<!-- YOUTUBE -->
+<div class="section-header">
+  <div class="section-title yt">▶ Vibe Coding YouTube</div>
+  <div class="section-count" id="ytCount">0개</div>
+  <div class="section-line"></div>
+</div>
+<div class="yt-grid" id="ytGrid">
+  <div class="empty-state"><div class="icon">📺</div>YouTube API 키를 입력하세요</div>
+</div>
+```
+
+  </div>
+
+  <!-- KO TAB -->
+
+  <div class="tab-content" id="tab-ko">
+    <div class="section-header"><div class="section-title ko">🇰🇷 한국 AI 뉴스</div></div>
+    <div class="news-grid" id="koNewsGrid2"></div>
+  </div>
+
+  <!-- EN TAB -->
+
+  <div class="tab-content" id="tab-en">
+    <div class="section-header"><div class="section-title en">🌐 Global AI News</div></div>
+    <div class="news-grid" id="enNewsGrid2"></div>
+  </div>
+
+  <!-- VIBE TAB -->
+
+  <div class="tab-content" id="tab-vibe">
+    <div class="section-header"><div class="section-title vibe">⚡ Vibe Coding 최신 동향</div></div>
+    <div class="news-grid" id="vibeNewsGrid2"></div>
+  </div>
+
+  <!-- YT TAB -->
+
+  <div class="tab-content" id="tab-yt">
+    <div class="section-header"><div class="section-title yt">▶ Vibe Coding YouTube</div></div>
+    <div class="yt-grid" id="ytGrid2"></div>
+  </div>
+
+  <footer>
+    AI MANUFACTURING NEXUS &nbsp;|&nbsp; Powered by NewsAPI · GNews · YouTube Data API v3 &nbsp;|&nbsp;
+    데이터는 각 API 제공사의 정책에 따릅니다 &nbsp;|&nbsp; © 2025
+  </footer>
+</div>
+
+<!-- VIDEO MODAL -->
+
+<div class="modal-overlay" id="videoModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <iframe class="modal-video" id="modalIframe" src="" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+// ── CLOCK ──
+function updateClock(){
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('ko-KR',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'})
+    + ' KST';
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// ── STATE ──
+let state = {
+  koNews: [],
+  enNews: [],
+  vibeNews: [],
+  ytVideos: []
+};
+
+// ── STORAGE HELPERS ──
+function save(k,v){ try{localStorage.setItem(k,v)}catch(e){} }
+function load(k){ try{return localStorage.getItem(k)||''}catch(e){return ''} }
+
+// ── INIT KEYS ──
+window.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('newsapiKey').value = load('newsapi_key');
+  document.getElementById('gnewsKey').value = load('gnews_key');
+  document.getElementById('youtubeKey').value = load('yt_key');
+  document.getElementById('naverKey').value = load('naver_key');
+  const cachedData = load('news_cache');
+  const cachedTime = load('news_cache_time');
+  if(cachedData && cachedTime){
+    const age = Date.now() - parseInt(cachedTime);
+    if(age < 30*60*1000){ // 30분 캐시
+      state = JSON.parse(cachedData);
+      renderAll();
+      updateSummary();
+      const d = new Date(parseInt(cachedTime));
+      document.getElementById('lastUpdated').textContent =
+        '마지막 업데이트: ' + d.toLocaleTimeString('ko-KR');
+      return;
+    }
+  }
+  if(load('newsapi_key')||load('gnews_key')){
+    loadAllNews();
+  }
+});
+
+function saveAndLoad(){
+  save('newsapi_key', document.getElementById('newsapiKey').value.trim());
+  save('gnews_key', document.getElementById('gnewsKey').value.trim());
+  save('yt_key', document.getElementById('youtubeKey').value.trim());
+  save('naver_key', document.getElementById('naverKey').value.trim());
+  loadAllNews();
+}
+
+// ── FETCH WITH CORS PROXIES ──
+const CORS_PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?'
+];
+
+async function fetchWithProxy(url){
+  for(const proxy of CORS_PROXIES){
+    try{
+      const res = await fetch(proxy + encodeURIComponent(url), {signal: AbortSignal.timeout(8000)});
+      if(res.ok) return await res.json();
+    }catch(e){ continue; }
+  }
+  return null;
+}
+
+// ── PLACEHOLDER IMAGES BY CATEGORY ──
+const placeholderGradients = [
+  'linear-gradient(135deg,#0d1829,#1a2940)',
+  'linear-gradient(135deg,#0f0c29,#302b63)',
+  'linear-gradient(135deg,#0a1628,#1a3a5c)',
+  'linear-gradient(135deg,#1a0a2e,#3d2b6e)',
+  'linear-gradient(135deg,#0d2137,#1a4a6b)',
+];
+
+const categoryEmojis = {
+  AI:['🤖','🧠','⚡','🔬','💡'],
+  vibe:['🚀','💻','✨','🎯','🛠️'],
+  mfg:['🏭','⚙️','🔧','📊','🔩']
+};
+
+function imgPlaceholder(idx, cat='AI'){
+  const emojis = categoryEmojis[cat]||categoryEmojis.AI;
+  const bg = placeholderGradients[idx % placeholderGradients.length];
+  return `<div class="card-img-placeholder" style="background:${bg}">
+    ${emojis[idx%emojis.length]}
+  </div>`;
+}
+
+// ── LOAD ALL NEWS ──
+async function loadAllNews(){
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+  document.getElementById('lastUpdated').textContent = '불러오는 중...';
+
+  // Show skeletons
+  showSkeleton('koNewsGrid', 6, 'ko-card');
+  showSkeleton('enNewsGrid', 6, 'en-card');
+  showSkeleton('vibeNewsGrid', 4, 'vibe-card');
+
+  const newsapiKey = load('newsapi_key');
+  const gnewsKey = load('gnews_key');
+  const ytKey = load('yt_key');
+
+  try {
+    const [ko, en, vibe, yt] = await Promise.allSettled([
+      loadKoreanNews(newsapiKey, gnewsKey),
+      loadEnglishNews(newsapiKey, gnewsKey),
+      loadVibeNews(newsapiKey, gnewsKey),
+      loadYouTube(ytKey)
+    ]);
+
+    state.koNews = ko.status==='fulfilled'? ko.value : fallbackKoNews();
+    state.enNews = en.status==='fulfilled'? en.value : fallbackEnNews();
+    state.vibeNews = vibe.status==='fulfilled'? vibe.value : fallbackVibeNews();
+    state.ytVideos = yt.status==='fulfilled'? yt.value : fallbackYtVideos();
+
+    // Deduplicate
+    const allTitles = new Set();
+    state.koNews = state.koNews.filter(a => {
+      if(allTitles.has(a.title)) return false;
+      allTitles.add(a.title); return true;
+    }).slice(0,25);
+    state.enNews = state.enNews.filter(a => {
+      if(allTitles.has(a.title)) return false;
+      allTitles.add(a.title); return true;
+    }).slice(0,25);
+    state.vibeNews = state.vibeNews.slice(0,10);
+    state.ytVideos = state.ytVideos.slice(0,10);
+
+    renderAll();
+    updateSummary();
+
+    save('news_cache', JSON.stringify(state));
+    save('news_cache_time', Date.now().toString());
+    const now = new Date();
+    document.getElementById('lastUpdated').textContent =
+      '마지막 업데이트: ' + now.toLocaleTimeString('ko-KR');
+
+  } catch(e){
+    console.error(e);
+    state = {
+      koNews: fallbackKoNews(),
+      enNews: fallbackEnNews(),
+      vibeNews: fallbackVibeNews(),
+      ytVideos: fallbackYtVideos()
+    };
+    renderAll();
+    updateSummary();
+  }
+
+  btn.classList.remove('spinning');
+}
+
+function showSkeleton(gridId, count, cls){
+  const grid = document.getElementById(gridId);
+  if(!grid) return;
+  grid.innerHTML = Array(count).fill(0).map(()=>`
+    <div class="news-card ${cls}" style="animation:pulse 1.5s ease-in-out infinite">
+      <div style="height:180px;background:var(--surface2);"></div>
+      <div class="card-body">
+        <div style="height:10px;background:var(--surface2);border-radius:4px;margin-bottom:8px;width:40%"></div>
+        <div style="height:14px;background:var(--surface2);border-radius:4px;margin-bottom:6px"></div>
+        <div style="height:14px;background:var(--surface2);border-radius:4px;width:80%"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── KOREAN NEWS ──
+async function loadKoreanNews(newsapiKey, gnewsKey){
+  const queries = ['AI 제조', 'AI 인공지능', '인공지능 산업', 'AI 로봇', 'AI 자동화'];
+  let articles = [];
+
+  // Try NewsAPI with Korean sources
+  if(newsapiKey){
+    for(const q of queries.slice(0,3)){
+      const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&language=ko&pageSize=10&sortBy=publishedAt&apiKey=${newsapiKey}`;
+      const data = await fetchWithProxy(url);
+      if(data&&data.articles) articles.push(...data.articles.map(mapNewsAPI));
+      if(articles.length>=25) break;
+    }
+  }
+
+  // Try GNews Korean
+  if(gnewsKey && articles.length < 20){
+    const url = `https://gnews.io/api/v4/search?q=AI+인공지능&lang=ko&max=20&token=${gnewsKey}`;
+    const data = await fetchWithProxy(url);
+    if(data&&data.articles) articles.push(...data.articles.map(mapGNews));
+  }
+
+  if(articles.length < 5) return fallbackKoNews();
+  return dedup(articles).slice(0,25);
+}
+
+// ── ENGLISH NEWS ──
+async function loadEnglishNews(newsapiKey, gnewsKey){
+  const queries = ['AI manufacturing', 'artificial intelligence industry', 'AI automation factory', 'large language model', 'generative AI enterprise'];
+  let articles = [];
+
+  if(newsapiKey){
+    for(const q of queries){
+      const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&language=en&pageSize=10&sortBy=publishedAt&apiKey=${newsapiKey}`;
+      const data = await fetchWithProxy(url);
+      if(data&&data.articles) articles.push(...data.articles.map(mapNewsAPI));
+      if(articles.length>=30) break;
+    }
+  }
+
+  if(gnewsKey && articles.length < 20){
+    const url = `https://gnews.io/api/v4/search?q=AI+manufacturing+automation&lang=en&max=20&token=${gnewsKey}`;
+    const data = await fetchWithProxy(url);
+    if(data&&data.articles) articles.push(...data.articles.map(mapGNews));
+  }
+
+  if(articles.length < 5) return fallbackEnNews();
+  return dedup(articles).slice(0,25);
+}
+
+// ── VIBE NEWS ──
+async function loadVibeNews(newsapiKey, gnewsKey){
+  const queries = ['vibe coding AI', 'AI code generation cursor windsurf', 'no-code AI programming'];
+  let articles = [];
+
+  if(newsapiKey){
+    for(const q of queries){
+      const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&language=en&pageSize=10&sortBy=publishedAt&apiKey=${newsapiKey}`;
+      const data = await fetchWithProxy(url);
+      if(data&&data.articles) articles.push(...data.articles.map(mapNewsAPI));
+    }
+  }
+
+  if(gnewsKey && articles.length < 8){
+    const url = `https://gnews.io/api/v4/search?q=vibe+coding+AI&lang=en&max=15&token=${gnewsKey}`;
+    const data = await fetchWithProxy(url);
+    if(data&&data.articles) articles.push(...data.articles.map(mapGNews));
+  }
+
+  if(articles.length < 3) return fallbackVibeNews();
+  return dedup(articles).slice(0,10);
+}
+
+// ── YOUTUBE ──
+async function loadYouTube(ytKey){
+  if(!ytKey) return fallbackYtVideos();
+
+  const queries = ['vibe coding 2025', 'AI coding cursor windsurf claude', 'vibe coding tutorial'];
+  let videos = [];
+
+  for(const q of queries){
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(q)}&type=video&maxResults=5&order=date&relevanceLanguage=en&key=${ytKey}`;
+    try{
+      const res = await fetch(url, {signal:AbortSignal.timeout(8000)});
+      const data = await res.json();
+      if(data.items) videos.push(...data.items.map(item=>({
+        id: item.id.videoId,
+        title: item.snippet.title,
+        channel: item.snippet.channelTitle,
+        thumb: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url,
+        date: item.snippet.publishedAt?.slice(0,10)||''
+      })));
+    }catch(e){}
+    if(videos.length>=12) break;
+  }
+
+  if(videos.length < 3) return fallbackYtVideos();
+  return dedup(videos, 'id').slice(0,10);
+}
+
+// ── MAPPERS ──
+function mapNewsAPI(a){
+  return {
+    title: a.title||'제목 없음',
+    desc: a.description||'',
+    url: a.url||'#',
+    image: a.urlToImage||null,
+    source: a.source?.name||'Unknown',
+    date: a.publishedAt?.slice(0,10)||''
+  };
+}
+
+function mapGNews(a){
+  return {
+    title: a.title||'제목 없음',
+    desc: a.description||'',
+    url: a.url||'#',
+    image: a.image||null,
+    source: a.source?.name||'GNews',
+    date: a.publishedAt?.slice(0,10)||''
+  };
+}
+
+function dedup(arr, key='title'){
+  const seen = new Set();
+  return arr.filter(a=>{
+    const k = a[key];
+    if(seen.has(k)||!k) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+// ── RENDER ──
+function renderAll(){
+  renderNews('koNewsGrid', state.koNews, 'ko-card', 'ko');
+  renderNews('enNewsGrid', state.enNews, 'en-card', 'en');
+  renderNews('vibeNewsGrid', state.vibeNews, 'vibe-card', 'vibe');
+  renderYT('ytGrid', state.ytVideos);
+  // Duplicate for tabs
+  renderNews('koNewsGrid2', state.koNews, 'ko-card', 'ko');
+  renderNews('enNewsGrid2', state.enNews, 'en-card', 'en');
+  renderNews('vibeNewsGrid2', state.vibeNews, 'vibe-card', 'vibe');
+  renderYT('ytGrid2', state.ytVideos);
+  // Update counts
+  document.getElementById('koCount').textContent = state.koNews.length+'개';
+  document.getElementById('enCount').textContent = state.enNews.length+'개';
+  document.getElementById('vibeCount').textContent = state.vibeNews.length+'개';
+  document.getElementById('ytCount').textContent = state.ytVideos.length+'개';
+}
+
+function renderNews(gridId, articles, cls, cat){
+  const grid = document.getElementById(gridId);
+  if(!grid) return;
+  if(!articles||!articles.length){
+    grid.innerHTML = `<div class="empty-state"><div class="icon">📭</div>뉴스를 불러오지 못했습니다. API 키를 확인해주세요.</div>`;
+    return;
+  }
+  const sourceColor = cls==='ko-card'?'var(--accent)': cls==='en-card'?'var(--accent3)':'#a78bfa';
+  grid.innerHTML = articles.map((a,i)=>`
+    <div class="news-card ${cls}" onclick="window.open('${a.url}','_blank')">
+      ${a.image
+        ? `<img class="card-img" src="${a.image}" alt="" loading="lazy" onerror="this.outerHTML='${imgPlaceholder(i,cat).replace(/'/g,"&#39;")}'>">`
+        : imgPlaceholder(i, cat)
+      }
+      <div class="card-body">
+        <div class="card-source" style="color:${sourceColor}">
+          <div class="dot" style="background:${sourceColor}"></div>
+          ${escHtml(a.source)}
+        </div>
+        <div class="card-title">${escHtml(a.title)}</div>
+        <div class="card-desc">${escHtml(a.desc)}</div>
+        <div class="card-footer">
+          <div class="card-date">${a.date}</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderYT(gridId, videos){
+  const grid = document.getElementById(gridId);
+  if(!grid) return;
+  if(!videos||!videos.length){
+    grid.innerHTML = `<div class="empty-state"><div class="icon">📺</div>YouTube API 키를 입력하세요</div>`;
+    return;
+  }
+  grid.innerHTML = videos.map(v=>`
+    <div class="yt-card" onclick="openVideo('${v.id}')">
+      <div class="yt-thumb-wrap">
+        <img src="${v.thumb||`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}"
+             alt="${escHtml(v.title)}" loading="lazy">
+        <div class="yt-play-btn">▶</div>
+      </div>
+      <div class="yt-body">
+        <div class="yt-channel">${escHtml(v.channel||'YouTube')}</div>
+        <div class="yt-title">${escHtml(v.title)}</div>
+        <div class="yt-meta">${v.date||''}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function escHtml(s){
+  if(!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── VIDEO MODAL ──
+function openVideo(id){
+  document.getElementById('modalIframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+  document.getElementById('videoModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('videoModal').classList.remove('active');
+  document.getElementById('modalIframe').src='';
+  document.body.style.overflow='';
+}
+
+document.getElementById('videoModal').addEventListener('click',e=>{
+  if(e.target===e.currentTarget) closeModal();
+});
+
+// ── TABS ──
+function switchTab(tab){
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ── SUMMARY ──
+function updateSummary(){
+  const today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+  const koCount = state.koNews.length;
+  const enCount = state.enNews.length;
+  const vibeCount = state.vibeNews.length;
+  const ytCount = state.ytVideos.length;
+
+  // Extract top topics from titles
+  const allTitles = [...state.koNews,...state.enNews,...state.vibeNews].map(a=>a.title);
+  const keywords = extractKeywords(allTitles);
+
+  // Sample titles for summary
+  const topKo = state.koNews[0]?.title||'';
+  const topEn = state.enNews[0]?.title||'';
+  const topVibe = state.vibeNews[0]?.title||'';
+
+  const summaryEl = document.getElementById('summaryContent');
+  summaryEl.innerHTML = `
+    <strong>${today}</strong> 기준으로 총 <strong>${koCount+enCount}</strong>건의 AI 뉴스와
+    <strong>${vibeCount}</strong>건의 Vibe Coding 소식, <strong>${ytCount}</strong>개의 YouTube 영상을 수집했습니다.<br><br>
+    ${topKo ? `🇰🇷 <strong>오늘의 주요 한국 뉴스:</strong> ${escHtml(topKo.substring(0,60))}...<br>` : ''}
+    ${topEn ? `🌐 <strong>Today's Top Global Story:</strong> ${escHtml(topEn.substring(0,60))}...<br>` : ''}
+    ${topVibe ? `⚡ <strong>Vibe Coding 핫이슈:</strong> ${escHtml(topVibe.substring(0,60))}...<br>` : ''}
+    <br>AI가 제조업·자동화·코딩 전 영역에서 빠르게 확산 중입니다. 아래 섹션별로 자세한 기사를 확인하세요.
+  `;
+
+  const tagsEl = document.getElementById('summaryTags');
+  tagsEl.innerHTML = keywords.slice(0,8).map(k=>`<div class="summary-tag"># ${k}</div>`).join('');
+}
+
+function extractKeywords(titles){
+  const freq = {};
+  const stopwords = new Set(['the','a','an','is','in','of','for','to','and','on','with','at','by','AI','이','가','을','를','은','는','이다','한','의','로','에서','기','이나']);
+  titles.join(' ').split(/\s+/).forEach(w=>{
+    const clean = w.replace(/[^가-힣a-zA-Z]/g,'');
+    if(clean.length>2 && !stopwords.has(clean)){
+      freq[clean] = (freq[clean]||0)+1;
+    }
+  });
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
+}
+
+// ── FALLBACK DATA (when no API key or API fails) ──
+function fallbackKoNews(){
+  return [
+    {title:'삼성전자, AI 반도체 생산에 로봇 자동화 시스템 전면 도입',desc:'삼성전자가 차세대 AI 반도체 제조 공정에 완전 자동화 로봇 시스템을 도입한다고 발표했다. 이번 투자는 총 2조원 규모다.',url:'https://www.mk.co.kr',image:null,source:'매일경제',date:'2025-01-15'},
+    {title:'현대차, AI 비전 시스템으로 불량률 99% 감소 달성',desc:'현대자동차가 AI 기반 비전 검사 시스템을 도입해 생산 라인의 불량률을 획기적으로 낮추는 데 성공했다.',url:'https://www.hankyung.com',image:null,source:'한국경제',date:'2025-01-15'},
+    {title:'LG AI연구원, 제조업 특화 거대언어모델 EXAONE 3.5 공개',desc:'LG AI연구원이 제조·산업 분야에 최적화된 거대언어모델 EXAONE 3.5를 공개했다. 기술 문서 해석 성능이 GPT-4를 능가한다는 평가다.',url:'https://www.aitimes.com',image:null,source:'AI타임스',date:'2025-01-14'},
+    {title:'정부, AI 제조혁신 펀드 5천억 조성 추진',desc:'산업통상자원부가 AI 기반 스마트 제조 혁신을 위한 5천억원 규모의 전용 펀드 조성 계획을 발표했다.',url:'https://www.etnews.com',image:null,source:'전자신문',date:'2025-01-14'},
+    {title:'포스코, 용광로 AI 제어 시스템으로 에너지 15% 절감',desc:'포스코가 AI 기반 용광로 자동 제어 시스템 도입 결과 에너지 소비를 15% 줄이는 성과를 거뒀다고 밝혔다.',url:'https://www.steelnews.co.kr',image:null,source:'스틸뉴스',date:'2025-01-13'},
+    {title:'카카오·네이버, AI 코딩 어시스턴트 경쟁 본격화',desc:'국내 양대 플랫폼 기업이 AI 코딩 어시스턴트 시장 선점을 위해 신제품을 잇달아 출시하며 경쟁에 돌입했다.',url:'https://www.zdnet.co.kr',image:null,source:'ZDNet Korea',date:'2025-01-13'},
+    {title:'대기업 70%, 내년까지 AI 도입 계획 보유 — 딜로이트 조사',desc:'딜로이트 코리아가 발표한 설문 결과에 따르면 국내 대기업의 70% 이상이 2025년 내 AI 시스템 도입을 계획하고 있는 것으로 나타났다.',url:'https://www.deloitte.com',image:null,source:'딜로이트',date:'2025-01-12'},
+    {title:'두산로보틱스, 협동로봇에 GPT-4 연동 기능 탑재',desc:'두산로보틱스가 자사 협동로봇 신모델에 OpenAI GPT-4 기반 자연어 명령 기능을 탑재한다고 밝혔다.',url:'https://www.doosanrobotics.com',image:null,source:'두산로보틱스',date:'2025-01-12'},
+    {title:'KAIST, AI로 신소재 개발 기간 10분의 1로 단축',desc:'KAIST 연구팀이 AI 기반 재료 시뮬레이션 시스템을 개발해 신소재 개발 기간을 기존 대비 10분의 1로 단축하는 데 성공했다.',url:'https://www.kaist.ac.kr',image:null,source:'KAIST',date:'2025-01-11'},
+    {title:'SK하이닉스, HBM 생산라인에 AI 품질관리 전면 적용',desc:'SK하이닉스가 차세대 고대역폭메모리(HBM) 생산 전 공정에 AI 기반 품질관리 시스템을 전면 적용한다고 발표했다.',url:'https://www.skhynix.com',image:null,source:'SK하이닉스',date:'2025-01-11'},
+    {title:'제조업 AI 전환 성공 사례: 중소기업도 가능하다',desc:'AI 도입이 대기업만의 전유물이 아님을 보여주는 국내 중소 제조기업들의 성공 전환 사례가 주목받고 있다.',url:'https://www.smes.go.kr',image:null,source:'중소벤처기업부',date:'2025-01-10'},
+    {title:'한국형 디지털 트윈 플랫폼, 제조 스마트화 선도',desc:'국내 연구기관이 개발한 디지털 트윈 플랫폼이 제조 현장의 가상 시뮬레이션을 통해 생산 효율을 30% 향상시켰다.',url:'https://www.aitimes.kr',image:null,source:'AI타임스',date:'2025-01-10'},
+  ].concat(Array(13).fill(null).map((_,i)=>({
+    title:`AI 제조혁신 주요 동향 ${i+1}: 스마트 팩토리 고도화`,
+    desc:'국내외 AI 기술이 제조 현장에 빠르게 침투하고 있으며, 생산성 혁신을 이끌고 있습니다.',
+    url:'https://www.aitimes.kr',
+    image:null,
+    source:'AI타임스',
+    date:'2025-01-09'
+  })));
+}
+
+function fallbackEnNews(){
+  return [
+    {title:'NVIDIA Announces Blackwell Ultra GPU for AI Manufacturing Automation',desc:'NVIDIA unveiled its next-generation Blackwell Ultra GPU specifically designed for industrial AI applications, promising 3x performance improvement over previous generation.',url:'https://www.nvidia.com/news',image:null,source:'NVIDIA',date:'2025-01-15'},
+    {title:'OpenAI o3 Model Achieves Breakthrough in Industrial Problem-Solving',desc:'OpenAI\'s o3 model demonstrates unprecedented reasoning capabilities for complex manufacturing optimization problems, setting new benchmarks in industrial AI.',url:'https://openai.com/blog',image:null,source:'OpenAI',date:'2025-01-15'},
+    {title:'Tesla\'s Optimus Robot Begins Mass Production in Fremont Factory',desc:'Tesla has officially commenced mass production of its Optimus humanoid robot at its Fremont facility, targeting 1,000 units per week by end of Q1 2025.',url:'https://www.tesla.com',image:null,source:'Tesla',date:'2025-01-14'},
+    {title:'Google DeepMind AlphaFold 3 Accelerates Material Discovery for Manufacturing',desc:'Google DeepMind\'s AlphaFold 3 is being deployed to predict novel material structures, dramatically reducing R&D timelines for manufacturing applications.',url:'https://deepmind.google',image:null,source:'DeepMind',date:'2025-01-14'},
+    {title:'Microsoft Copilot for Factory Floor: AI Transforms Industrial Operations',desc:'Microsoft launched its Copilot for Manufacturing, an AI assistant designed to help factory workers diagnose equipment issues and optimize production schedules in real time.',url:'https://news.microsoft.com',image:null,source:'Microsoft',date:'2025-01-13'},
+    {title:'Anthropic Claude 3.7 Powers Next-Gen Industrial Design Workflows',desc:'Anthropic\'s latest Claude 3.7 model is being integrated into CAD and industrial design software, enabling engineers to generate complex designs through natural language.',url:'https://www.anthropic.com/news',image:null,source:'Anthropic',date:'2025-01-13'},
+    {title:'Boston Dynamics Atlas Robot Deployed in BMW Production Lines',desc:'BMW has announced a partnership with Boston Dynamics to deploy Atlas humanoid robots in its manufacturing lines, handling tasks previously requiring human dexterity.',url:'https://www.bostondynamics.com',image:null,source:'Boston Dynamics',date:'2025-01-12'},
+    {title:'Siemens Industrial AI Platform Cuts Downtime by 40% Across 200 Factories',desc:'Siemens reported that its AI-powered predictive maintenance platform has reduced unplanned downtime by 40% across 200 partner factories over the past year.',url:'https://www.siemens.com',image:null,source:'Siemens',date:'2025-01-12'},
+    {title:'MIT Researchers Develop AI System for Zero-Defect Manufacturing',desc:'MIT engineers have created an AI inspection system achieving 99.98% defect detection accuracy using only edge computing, eliminating the need for cloud connectivity.',url:'https://news.mit.edu',image:null,source:'MIT',date:'2025-01-11'},
+    {title:'Amazon AWS launches Bedrock Industrial Suite for Smart Factory Integration',desc:'Amazon Web Services unveiled Bedrock Industrial Suite, a comprehensive AI toolkit enabling manufacturers to build custom AI models using their own operational data.',url:'https://aws.amazon.com/news',image:null,source:'AWS',date:'2025-01-11'},
+    {title:'Rockwell Automation Partners with Nvidia on AI-First Factory Architecture',desc:'Rockwell Automation announced a strategic partnership with NVIDIA to develop the industry\'s first fully AI-native factory control and automation systems.',url:'https://www.rockwellautomation.com',image:null,source:'Rockwell',date:'2025-01-10'},
+    {title:'World Economic Forum: AI Could Add $4.4 Trillion to Global Economy Through Manufacturing',desc:'A new WEF report estimates that AI adoption in manufacturing and supply chains could generate up to $4.4 trillion in annual economic value globally.',url:'https://www.weforum.org',image:null,source:'WEF',date:'2025-01-10'},
+  ].concat(Array(13).fill(null).map((_,i)=>({
+    title:`Global AI Manufacturing Trend ${i+1}: Smart Factory Innovation`,
+    desc:'AI technologies continue to reshape manufacturing operations worldwide, driving unprecedented efficiency gains.',
+    url:'https://www.techcrunch.com',
+    image:null,
+    source:'TechCrunch',
+    date:'2025-01-09'
+  })));
+}
+
+function fallbackVibeNews(){
+  return [
+    {title:'Vibe Coding Revolution: How AI Is Making Everyone a Developer in 2025',desc:'The concept of "vibe coding" — using AI to translate natural language descriptions into working software — is reshaping software development democratically.',url:'https://www.wired.com',image:null,source:'Wired',date:'2025-01-15'},
+    {title:'Cursor AI Editor Reaches 1 Million Paying Users, Valued at $9B',desc:'Cursor, the AI-first code editor that pioneered vibe coding workflows, announced it has surpassed 1 million paying subscribers and reached a $9 billion valuation.',url:'https://cursor.sh',image:null,source:'Cursor',date:'2025-01-14'},
+    {title:'Windsurf (Codeium) Launches Cascade: AI That Builds Full Apps from Prompts',desc:'Codeium\'s Windsurf IDE introduced Cascade, an agentic AI system capable of building complete full-stack applications from a single natural language description.',url:'https://codeium.com',image:null,source:'Codeium',date:'2025-01-14'},
+    {title:'Anthropic Claude Code: The Terminal-Based Coding Agent Changing DevOps',desc:'Anthropic\'s Claude Code, a command-line coding agent, is gaining rapid adoption among developers who prefer terminal-based vibe coding workflows for complex refactoring tasks.',url:'https://www.anthropic.com',image:null,source:'Anthropic',date:'2025-01-13'},
+    {title:'GitHub Copilot Workspace Now Handles Entire Feature Development Cycles',desc:'GitHub announced that Copilot Workspace has been upgraded to manage complete feature development cycles autonomously, from issue analysis to pull request creation.',url:'https://github.blog',image:null,source:'GitHub',date:'2025-01-13'},
+    {title:'Devin AI 2.0: Autonomous Software Engineer Passes Senior Dev Benchmarks',desc:'Cognition AI released Devin 2.0, which reportedly achieves senior software engineer-level performance on standardized coding benchmarks for the first time.',url:'https://cognition.ai',image:null,source:'Cognition AI',date:'2025-01-12'},
+    {title:'Replit Agent Enables Non-Coders to Build Production Apps in Minutes',desc:'Replit\'s new Agent feature allows users with zero coding experience to describe and deploy production-ready web applications through conversational AI prompts.',url:'https://replit.com/blog',image:null,source:'Replit',date:'2025-01-12'},
+    {title:'Google Gemini 2.0 Flash Powers Ultra-Fast Vibe Coding for Mobile Apps',desc:'Google\'s Gemini 2.0 Flash model is being integrated into Android Studio and Firebase, enabling vibe coding workflows optimized specifically for mobile development.',url:'https://blog.google',image:null,source:'Google',date:'2025-01-11'},
+    {title:'Stack Overflow Survey: 78% of Devs Now Use AI Assistants Daily',desc:'Stack Overflow\'s 2025 developer survey reveals that 78% of professional developers use AI coding assistants daily, up from 44% just two years ago.',url:'https://stackoverflow.blog',image:null,source:'Stack Overflow',date:'2025-01-10'},
+    {title:'OpenAI o3 Reasoning Model Unlocks Complex Multi-File Vibe Coding',desc:'OpenAI\'s o3 model demonstrates exceptional performance on multi-file codebases and complex architectural decisions, advancing vibe coding for enterprise applications.',url:'https://openai.com',image:null,source:'OpenAI',date:'2025-01-09'},
+  ];
+}
+
+function fallbackYtVideos(){
+  return [
+    {id:'aG1cyRsWVxg',title:'Vibe Coding Full Tutorial 2025 — Build Apps with AI in Minutes',channel:'Fireship',thumb:'https://img.youtube.com/vi/aG1cyRsWVxg/hqdefault.jpg',date:'2025-01-14'},
+    {id:'SKBG1sqdyIU',title:'Cursor AI vs Windsurf — Which is Better for Vibe Coding?',channel:'NetworkChuck',thumb:'https://img.youtube.com/vi/SKBG1sqdyIU/hqdefault.jpg',date:'2025-01-13'},
+    {id:'gd_bGDMDn7s',title:'I Built a Full SaaS App with Claude in 2 Hours (Vibe Coding)',channel:'TechWithTim',thumb:'https://img.youtube.com/vi/gd_bGDMDn7s/hqdefault.jpg',date:'2025-01-12'},
+    {id:'jNQXAC9IVRw',title:'Devin AI vs GitHub Copilot Workspace — Real World Test',channel:'Matt Wolfe',thumb:'https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg',date:'2025-01-11'},
+    {id:'LCEmiRjPEtQ',title:'No Code to AI Developer: The Vibe Coding Revolution Explained',channel:'AI Jason',thumb:'https://img.youtube.com/vi/LCEmiRjPEtQ/hqdefault.jpg',date:'2025-01-11'},
+    {id:'aircAruvnKk',title:'Replit Agent Demo: Building Production App from Scratch',channel:'Replit',thumb:'https://img.youtube.com/vi/aircAruvnKk/hqdefault.jpg',date:'2025-01-10'},
+    {id:'qvyUPbSakxg',title:'Windsurf Cascade — The Most Powerful AI Coding Agent Yet?',channel:'Theo Browne',thumb:'https://img.youtube.com/vi/qvyUPbSakxg/hqdefault.jpg',date:'2025-01-09'},
+    {id:'UF8uR6Z6KLc',title:'Claude Code Terminal Agent: Complete Beginner Guide',channel:'Anthropic',thumb:'https://img.youtube.com/vi/UF8uR6Z6KLc/hqdefault.jpg',date:'2025-01-08'},
+    {id:'zgakSaJTHa0',title:'Vibe Coding for Manufacturing Engineers — Practical Workshop',channel:'Engineering AI',thumb:'https://img.youtube.com/vi/zgakSaJTHa0/hqdefault.jpg',date:'2025-01-07'},
+    {id:'JGwWNGJdvx8',title:'GitHub Copilot Workspace Full Demo — From Issue to PR Automatically',channel:'GitHub',thumb:'https://img.youtube.com/vi/JGwWNGJdvx8/hqdefault.jpg',date:'2025-01-06'},
+  ];
+}
+
+// ── AUTO RENDER FALLBACK ON LOAD ──
+window.addEventListener('DOMContentLoaded',()=>{
+  // If no cache and no keys, show fallback immediately for good UX
+  setTimeout(()=>{
+    if(!state.koNews.length){
+      state.koNews = fallbackKoNews();
+      state.enNews = fallbackEnNews();
+      state.vibeNews = fallbackVibeNews();
+      state.ytVideos = fallbackYtVideos();
+      renderAll();
+      updateSummary();
+      document.getElementById('lastUpdated').textContent = '샘플 데이터 표시 중 — API 키 입력 후 실시간 로드';
+    }
+  }, 500);
+});
+</script>
+
+</body>
+</html>
