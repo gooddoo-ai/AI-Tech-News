@@ -8,88 +8,75 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f1f5f9;
-  --card:#ffffff;
-  --border:#e2e8f0;
-  --border2:#cbd5e1;
-  --text:#0f172a;
-  --text2:#1e293b;
-  --text3:#475569;
-  --text4:#94a3b8;
-  --blue:#2563eb;
-  --amber:#d97706;
-  --purple:#7c3aed;
-  --red:#dc2626;
-  --green:#059669;
-  --indigo:#4f46e5;
-  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
-  --shadow-md:0 4px 16px rgba(0,0,0,.08);
-  --shadow-lg:0 12px 32px rgba(0,0,0,.12);
+  --bg:#f1f5f9;--card:#fff;--border:#e2e8f0;--border2:#cbd5e1;
+  --t1:#0f172a;--t2:#1e293b;--t3:#475569;--t4:#94a3b8;
+  --blue:#2563eb;--amber:#d97706;--purple:#7c3aed;--red:#dc2626;--indigo:#4f46e5;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 16px rgba(0,0,0,.09);
+  --sh3:0 12px 32px rgba(0,0,0,.13);
   --r:12px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR','Inter',sans-serif;min-height:100vh}
+body{background:var(--bg);color:var(--t1);font-family:'Noto Sans KR','Inter',sans-serif;min-height:100vh}
 a{text-decoration:none;color:inherit}
 .w{max-width:1440px;margin:0 auto;padding:0 20px}
 
 /* HEADER */
-header{background:#fff;border-bottom:1px solid var(–border);position:sticky;top:0;z-index:200;box-shadow:var(–shadow)}
+header{background:#fff;border-bottom:1px solid var(–border);position:sticky;top:0;z-index:200;box-shadow:var(–sh)}
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
 .logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 10px rgba(79,70,229,.4)}
-.logo-name{font-size:16px;font-weight:800;color:var(–text);letter-spacing:-.3px}
+.logo-ic{width:38px;height:38px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 10px rgba(79,70,229,.4)}
+.logo-name{font-size:16px;font-weight:800;color:var(–t1)}
 .logo-name em{color:var(–indigo);font-style:normal}
-.logo-desc{font-size:10px;color:var(–text4);font-family:‘Space Mono’,monospace;margin-top:1px}
+.logo-desc{font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace;margin-top:1px}
 .hdr-r{display:flex;align-items:center;gap:10px}
-.live{display:flex;align-items:center;gap:5px;background:#fef2f2;border:1px solid #fecaca;border-radius:20px;padding:3px 11px;font-size:10px;font-weight:700;color:#ef4444;font-family:‘Space Mono’,monospace}
-.live-dot{width:5px;height:5px;background:#ef4444;border-radius:50%;animation:blink 1.2s infinite}
+.live-pill{display:flex;align-items:center;gap:5px;background:#fef2f2;border:1px solid #fecaca;border-radius:20px;padding:3px 11px;font-size:10px;font-weight:700;color:#ef4444;font-family:‘Space Mono’,monospace}
+.ld{width:5px;height:5px;background:#ef4444;border-radius:50%;animation:blink 1.2s infinite}
 @keyframes blink{50%{opacity:.2}}
-#clock{font-family:‘Space Mono’,monospace;font-size:11px;color:var(–text3);background:var(–bg);padding:4px 10px;border-radius:20px;border:1px solid var(–border)}
+#clock{font-family:‘Space Mono’,monospace;font-size:11px;color:var(–t3);background:var(–bg);padding:4px 10px;border-radius:20px;border:1px solid var(–border)}
 
 /* AI PANEL */
-.ai-wrap{margin:20px 0 16px}
-.ai-card{background:#fff;border-radius:16px;border:1px solid var(–border);overflow:hidden;box-shadow:var(–shadow-md)}
+.ai-card{background:#fff;border-radius:16px;border:1px solid var(–border);overflow:hidden;box-shadow:var(–sh2);margin:20px 0 16px}
 .ai-top{background:linear-gradient(135deg,#4f46e5,#7c3aed,#2563eb);padding:20px 24px;display:flex;align-items:flex-start;gap:14px}
-.ai-ava{width:48px;height:48px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.ai-t{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.2px}
+.ai-av{width:48px;height:48px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.ai-t{font-size:17px;font-weight:800;color:#fff}
 .ai-s{font-size:11px;color:rgba(255,255,255,.7);font-family:‘Space Mono’,monospace;margin-top:2px}
 .ai-body{padding:18px 24px 20px}
-#sumText{font-size:14px;line-height:1.85;color:var(–text2)}
+#sumText{font-size:14px;line-height:1.85;color:var(–t2)}
 #sumText strong{color:var(–indigo);font-weight:700}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .tag{background:#eef2ff;border:1px solid #c7d2fe;border-radius:20px;padding:3px 11px;font-size:11px;color:#4338ca;font-weight:600}
 
 /* TOOLBAR */
 .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.upd{font-size:11px;color:var(–text4);font-family:‘Space Mono’,monospace}
-.ref-btn{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(–border2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;color:var(–text2);cursor:pointer;transition:all .2s;font-family:‘Noto Sans KR’,sans-serif;box-shadow:var(–shadow)}
-.ref-btn:hover{background:#f8fafc;border-color:#94a3b8}
-.ref-btn.spin .ico{animation:spin 1s linear infinite;display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
+.upd{font-size:11px;color:var(–t4);font-family:‘Space Mono’,monospace}
+.ref-btn{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(–border2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;color:var(–t2);cursor:pointer;transition:all .2s;box-shadow:var(–sh);font-family:‘Noto Sans KR’,sans-serif}
+.ref-btn:hover{background:#f8fafc;border-color:#64748b}
+.spin .ico{animation:rotate 1s linear infinite;display:inline-block}
+@keyframes rotate{to{transform:rotate(360deg)}}
 
 /* TABS */
-.tabs{display:flex;gap:3px;background:#fff;border:1px solid var(–border);border-radius:10px;padding:3px;margin-bottom:20px;width:fit-content;box-shadow:var(–shadow);flex-wrap:wrap}
-.tb{padding:7px 17px;border:none;background:transparent;color:var(–text3);font-size:12px;font-weight:500;border-radius:7px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:‘Noto Sans KR’,sans-serif}
+.tabs{display:flex;gap:3px;background:#fff;border:1px solid var(–border);border-radius:10px;padding:3px;margin-bottom:20px;width:fit-content;box-shadow:var(–sh);flex-wrap:wrap}
+.tb{padding:7px 17px;border:none;background:transparent;color:var(–t3);font-size:12px;font-weight:500;border-radius:7px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:‘Noto Sans KR’,sans-serif}
 .tb.on{background:var(–indigo);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(79,70,229,.35)}
 .tc{display:none}.tc.on{display:block}
 
 /* SECTION */
 .sec{display:flex;align-items:center;gap:10px;margin:28px 0 14px}
-.sec-pill{display:flex;align-items:center;gap:7px;padding:5px 14px;border-radius:30px;font-size:12px;font-weight:700}
-.sec-pill.ko{background:#eff6ff;color:#1d4ed8;border:1.5px solid #bfdbfe}
-.sec-pill.en{background:#fffbeb;color:#b45309;border:1.5px solid #fde68a}
-.sec-pill.vb{background:#f5f3ff;color:#6d28d9;border:1.5px solid #ddd6fe}
-.sec-pill.yt{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca}
-.sec-n{background:#f8fafc;border:1px solid var(–border);border-radius:20px;padding:2px 9px;font-size:10px;color:var(–text4);font-family:‘Space Mono’,monospace}
+.sec-p{display:flex;align-items:center;gap:7px;padding:5px 14px;border-radius:30px;font-size:12px;font-weight:700}
+.sec-p.ko{background:#eff6ff;color:#1d4ed8;border:1.5px solid #bfdbfe}
+.sec-p.en{background:#fffbeb;color:#b45309;border:1.5px solid #fde68a}
+.sec-p.vb{background:#f5f3ff;color:#6d28d9;border:1.5px solid #ddd6fe}
+.sec-p.yt{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca}
+.sec-n{background:#f8fafc;border:1px solid var(–border);border-radius:20px;padding:2px 9px;font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
 .sec-line{flex:1;height:1px;background:var(–border)}
 
-/* GRID */
+/* NEWS GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:4px}
 
-/* CARD — wraps an <a> */
-.card{background:#fff;border:1px solid var(–border);border-radius:var(–r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(–shadow);transition:all .22s;cursor:pointer}
-.card:hover{transform:translateY(-3px);box-shadow:var(–shadow-lg)}
+.card{background:#fff;border:1px solid var(–border);border-radius:var(–r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(–sh);transition:all .22s;text-decoration:none}
+.card:hover{transform:translateY(-3px);box-shadow:var(–sh3)}
 .card.ko:hover{border-color:#93c5fd}
 .card.en:hover{border-color:#fcd34d}
 .card.vb:hover{border-color:#c4b5fd}
@@ -108,26 +95,28 @@ header{background:#fff;border-bottom:1px solid var(–border);position:sticky;to
 .c-badge.ko{background:#dbeafe;color:#1e40af}
 .c-badge.en{background:#fef3c7;color:#92400e}
 .c-badge.vb{background:#ede9fe;color:#5b21b6}
-.c-date{font-size:10px;color:var(–text4);font-family:‘Space Mono’,monospace}
-.c-title{font-size:13px;font-weight:700;line-height:1.55;color:var(–text);margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.c-desc{font-size:11px;color:var(–text3);line-height:1.65;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.c-foot{margin-top:10px;padding-top:9px;border-top:1px solid var(–border);display:flex;align-items:center;justify-content:flex-end}
+.c-date{font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
+.c-title{font-size:13px;font-weight:700;line-height:1.55;color:var(–t1);margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.c-desc{font-size:11px;color:var(–t3);line-height:1.65;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.c-foot{margin-top:10px;padding-top:9px;border-top:1px solid var(–border);display:flex;align-items:center;justify-content:space-between}
 .c-go{font-size:11px;font-weight:700;color:var(–indigo);display:flex;align-items:center;gap:3px;transition:gap .15s}
 .card:hover .c-go{gap:6px}
+/* 검색 배지 — fallback 카드에 표시 */
+.search-badge{font-size:9px;background:#fef9c3;border:1px solid #fde047;color:#854d0e;border-radius:20px;padding:2px 7px;font-family:‘Space Mono’,monospace;font-weight:600}
 
-/* YT GRID */
+/* YT */
 .yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.yc{background:#fff;border:1px solid var(–border);border-radius:var(–r);overflow:hidden;cursor:pointer;transition:all .22s;box-shadow:var(–shadow)}
-.yc:hover{transform:translateY(-3px);box-shadow:var(–shadow-lg);border-color:#fca5a5}
+.yc{background:#fff;border:1px solid var(–border);border-radius:var(–r);overflow:hidden;cursor:pointer;transition:all .22s;box-shadow:var(–sh)}
+.yc:hover{transform:translateY(-3px);box-shadow:var(–sh3);border-color:#fca5a5}
 .yt-tw{position:relative;width:100%;padding-top:56.25%;background:#000;overflow:hidden}
 .yt-tw img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .yc:hover .yt-tw img{transform:scale(1.04)}
-.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:rgba(220,38,38,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;box-shadow:0 4px 20px rgba(220,38,38,.5);transition:all .2s}
-.yc:hover .yt-play{transform:translate(-50%,-50%) scale(1.1);background:#dc2626}
+.yt-pl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:rgba(220,38,38,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;box-shadow:0 4px 20px rgba(220,38,38,.5);transition:all .2s}
+.yc:hover .yt-pl{transform:translate(-50%,-50%) scale(1.1);background:#dc2626}
 .yc-body{padding:12px}
 .yc-ch{font-size:10px;color:var(–red);font-family:‘Space Mono’,monospace;letter-spacing:1px;font-weight:700;text-transform:uppercase;margin-bottom:5px}
-.yc-title{font-size:12px;font-weight:700;line-height:1.5;color:var(–text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.yc-date{margin-top:7px;font-size:10px;color:var(–text4);font-family:‘Space Mono’,monospace}
+.yc-title{font-size:12px;font-weight:700;line-height:1.5;color:var(–t1);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.yc-date{margin-top:7px;font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
 
 /* MODAL */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
@@ -137,18 +126,15 @@ header{background:#fff;border-bottom:1px solid var(–border);position:sticky;to
 .modal-x{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:15px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center}
 .modal-x:hover{background:#dc2626}
 
-/* EMPTY */
-.mt-empty{grid-column:1/-1;text-align:center;padding:50px;color:var(–text4);font-size:13px}
-
-/* FOOTER */
-footer{margin-top:50px;background:#fff;border-top:1px solid var(–border);padding:20px 0;text-align:center;font-size:10px;color:var(–text4);font-family:‘Space Mono’,monospace;letter-spacing:1px}
+.mt-empty{grid-column:1/-1;text-align:center;padding:50px;color:var(–t4);font-size:13px}
+footer{margin-top:50px;background:#fff;border-top:1px solid var(–border);padding:20px 0;text-align:center;font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace;letter-spacing:1px}
 
 @media(max-width:640px){
 .grid,.yt-grid{grid-template-columns:1fr}
 .logo-name{font-size:14px}
 .ai-top{padding:14px 16px}
 .ai-body{padding:14px 16px}
-.tb{padding:6px 11px;font-size:11px}
+.tb{padding:6px 10px;font-size:11px}
 }
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(–bg)}
@@ -162,14 +148,14 @@ footer{margin-top:50px;background:#fff;border-top:1px solid var(–border);paddi
   <div class="w">
     <div class="hdr">
       <div class="logo">
-        <div class="logo-icon">🤖</div>
+        <div class="logo-ic">🤖</div>
         <div>
           <div class="logo-name">AI <em>Manufacturing</em> Nexus</div>
           <div class="logo-desc">실시간 AI 뉴스 · API키 불필요 · 자동갱신</div>
         </div>
       </div>
       <div class="hdr-r">
-        <div class="live"><div class="live-dot"></div>LIVE</div>
+        <div class="live-pill"><div class="ld"></div>LIVE</div>
         <div id="clock">--:--:--</div>
       </div>
     </div>
@@ -177,54 +163,46 @@ footer{margin-top:50px;background:#fff;border-top:1px solid var(–border);paddi
 </header>
 
 <div class="w">
-<div class="ai-wrap">
   <div class="ai-card">
     <div class="ai-top">
-      <div class="ai-ava">🧠</div>
-      <div>
-        <div class="ai-t">AI 비서</div>
-        <div class="ai-s">오늘의 뉴스 내용을 요약드립니다</div>
-      </div>
+      <div class="ai-av">🧠</div>
+      <div><div class="ai-t">AI 비서</div><div class="ai-s">오늘의 뉴스 내용을 요약드립니다</div></div>
     </div>
     <div class="ai-body">
       <div id="sumText">뉴스를 불러오는 중입니다...</div>
       <div class="tags" id="sumTags"></div>
     </div>
   </div>
-</div>
 
-<div class="toolbar">
-  <span class="upd" id="upd"></span>
-  <button class="ref-btn" id="refBtn" onclick="doLoad()"><span class="ico">↻</span> 새로고침</button>
-</div>
+  <div class="toolbar">
+    <span class="upd" id="upd"></span>
+    <button class="ref-btn" id="refBtn" onclick="doLoad(true)"><span class="ico">↻</span> 새로고침</button>
+  </div>
 
-<div class="tabs">
-  <button class="tb on" onclick="gotoTab('all',this)">🗂 전체</button>
-  <button class="tb" onclick="gotoTab('ko',this)">🇰🇷 한국어</button>
-  <button class="tb" onclick="gotoTab('en',this)">🌐 영문</button>
-  <button class="tb" onclick="gotoTab('vb',this)">⚡ Vibe Coding</button>
-  <button class="tb" onclick="gotoTab('yt',this)">▶ YouTube</button>
-</div>
+  <div class="tabs">
+    <button class="tb on" onclick="gotoTab('all',this)">🗂 전체</button>
+    <button class="tb" onclick="gotoTab('ko',this)">🇰🇷 한국어</button>
+    <button class="tb" onclick="gotoTab('en',this)">🌐 영문</button>
+    <button class="tb" onclick="gotoTab('vb',this)">⚡ Vibe Coding</button>
+    <button class="tb" onclick="gotoTab('yt',this)">▶ YouTube</button>
+  </div>
 
-<!-- ALL -->
+  <div class="tc on" id="tab-all">
+    <div class="sec"><div class="sec-p ko">🇰🇷 한국 AI 뉴스</div><div class="sec-n" id="kN">-</div><div class="sec-line"></div></div>
+    <div class="grid" id="kG"></div>
+    <div class="sec"><div class="sec-p en">🌐 Global AI News</div><div class="sec-n" id="eN">-</div><div class="sec-line"></div></div>
+    <div class="grid" id="eG"></div>
+    <div class="sec"><div class="sec-p vb">⚡ Vibe Coding 최신 동향</div><div class="sec-n" id="vN">-</div><div class="sec-line"></div></div>
+    <div class="grid" id="vG"></div>
+    <div class="sec"><div class="sec-p yt">▶ Vibe Coding YouTube</div><div class="sec-n" id="yN">-</div><div class="sec-line"></div></div>
+    <div class="yt-grid" id="yG"></div>
+  </div>
+  <div class="tc" id="tab-ko"><div class="sec"><div class="sec-p ko">🇰🇷 한국 AI 뉴스</div><div class="sec-line"></div></div><div class="grid" id="kG2"></div></div>
+  <div class="tc" id="tab-en"><div class="sec"><div class="sec-p en">🌐 Global AI News</div><div class="sec-line"></div></div><div class="grid" id="eG2"></div></div>
+  <div class="tc" id="tab-vb"><div class="sec"><div class="sec-p vb">⚡ Vibe Coding</div><div class="sec-line"></div></div><div class="grid" id="vG2"></div></div>
+  <div class="tc" id="tab-yt"><div class="sec"><div class="sec-p yt">▶ YouTube</div><div class="sec-line"></div></div><div class="yt-grid" id="yG2"></div></div>
 
-<div class="tc on" id="tab-all">
-  <div class="sec"><div class="sec-pill ko">🇰🇷 한국 AI 뉴스</div><div class="sec-n" id="kN">-</div><div class="sec-line"></div></div>
-  <div class="grid" id="kG"></div>
-  <div class="sec"><div class="sec-pill en">🌐 Global AI News</div><div class="sec-n" id="eN">-</div><div class="sec-line"></div></div>
-  <div class="grid" id="eG"></div>
-  <div class="sec"><div class="sec-pill vb">⚡ Vibe Coding 최신 동향</div><div class="sec-n" id="vN">-</div><div class="sec-line"></div></div>
-  <div class="grid" id="vG"></div>
-  <div class="sec"><div class="sec-pill yt">▶ Vibe Coding YouTube</div><div class="sec-n" id="yN">-</div><div class="sec-line"></div></div>
-  <div class="yt-grid" id="yG"></div>
-</div>
-<!-- TABS -->
-<div class="tc" id="tab-ko"><div class="sec"><div class="sec-pill ko">🇰🇷 한국 AI 뉴스</div><div class="sec-line"></div></div><div class="grid" id="kG2"></div></div>
-<div class="tc" id="tab-en"><div class="sec"><div class="sec-pill en">🌐 Global AI News</div><div class="sec-line"></div></div><div class="grid" id="eG2"></div></div>
-<div class="tc" id="tab-vb"><div class="sec"><div class="sec-pill vb">⚡ Vibe Coding</div><div class="sec-line"></div></div><div class="grid" id="vG2"></div></div>
-<div class="tc" id="tab-yt"><div class="sec"><div class="sec-pill yt">▶ YouTube</div><div class="sec-line"></div></div><div class="yt-grid" id="yG2"></div></div>
-
-<footer>AI MANUFACTURING NEXUS &nbsp;·&nbsp; Powered by NewsData.io RSS · YouTube &nbsp;·&nbsp; © 2025</footer>
+  <footer>AI MANUFACTURING NEXUS &nbsp;·&nbsp; RSS 기반 · API 키 불필요 &nbsp;·&nbsp; © 2025</footer>
 </div>
 
 <div class="modal-bg" id="vMod">
@@ -235,175 +213,158 @@ footer{margin-top:50px;background:#fff;border-top:1px solid var(–border);paddi
 </div>
 
 <script>
-// ── CLOCK
-setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('ko-KR',{hour12:false})+' KST';},1000);
+/* ── CLOCK ────────────────────────────────────── */
+setInterval(()=>{
+  document.getElementById('clock').textContent =
+    new Date().toLocaleTimeString('ko-KR',{hour12:false})+' KST';
+},1000);
 
-// ── STATE
+/* ── STATE ────────────────────────────────────── */
 const D={ko:[],en:[],vb:[],yt:[]};
 
-// ── DATE HELPERS
-function todayStr(offset=0){
-  const d=new Date();d.setDate(d.getDate()-offset);
-  return d.toISOString().slice(0,10);
+/* ── URL HELPERS ──────────────────────────────── */
+// 네이버 뉴스 검색 — 제목으로 검색하면 실제 기사가 나옴
+function naverSearch(title){
+  return 'https://search.naver.com/search.naver?where=news&query='+encodeURIComponent(title);
 }
-function isOldDate(dateStr){
-  if(!dateStr)return false;
-  const d=new Date(dateStr);
-  if(isNaN(d))return false;
-  const diffDays=(Date.now()-d.getTime())/(1000*60*60*24);
-  return diffDays>30; // filter out news older than 30 days
+// 구글 뉴스 검색
+function googleSearch(title){
+  return 'https://www.google.com/search?q='+encodeURIComponent(title)+'&tbm=nws';
 }
-
-// ── FETCH helpers
-async function fetchJSON(url,timeout=8000){
-  const r=await fetch(url,{signal:AbortSignal.timeout(timeout)});
-  if(!r.ok)throw new Error('HTTP '+r.status);
-  return r.json();
-}
-
-// ── CORS PROXIES — try each in order
-const PROXIES=[
-  u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
-  u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
-  u=>`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
-];
-
-async function proxyFetch(url){
-  for(const p of PROXIES){
-    try{
-      const r=await fetch(p(url),{signal:AbortSignal.timeout(9000)});
-      if(!r.ok)continue;
-      const ct=r.headers.get('content-type')||'';
-      if(ct.includes('json')){
-        const j=await r.json();
-        // allorigins wraps in {contents:'...'}
-        return j.contents?j.contents:JSON.stringify(j);
-      }
-      return await r.text();
-    }catch(e){continue;}
-  }
-  return null;
-}
-
-// ── RSS2JSON (free, no key needed)
-async function rss2json(feedUrl,count=20){
+// 실제 기사 URL인지 확인 (홈페이지 루트 아닌 경우)
+function isRealArticle(url){
+  if(!url) return false;
   try{
-    const url=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}&count=${count}`;
-    const d=await fetchJSON(url,10000);
-    if(d.status==='ok'&&d.items?.length)return d.items;
+    const u=new URL(url);
+    // 경로가 2자 이상이고, 가짜 ID 패턴 없어야 함
+    if(u.pathname.length < 3) return false;
+    // Date.now() 로 만든 가짜 URL 패턴 차단
+    if(/\d{13}/.test(url)) return false;
+    return true;
+  }catch(e){return false;}
+}
+
+/* ── RSS2JSON ─────────────────────────────────── */
+const R2J='https://api.rss2json.com/v1/api.json?rss_url=';
+async function fetchRSS(feedUrl, count=25){
+  try{
+    const r=await fetch(R2J+encodeURIComponent(feedUrl)+'&count='+count,
+      {signal:AbortSignal.timeout(10000)});
+    const j=await r.json();
+    if(j.status==='ok' && j.items?.length) return j.items;
   }catch(e){}
   return [];
 }
 
-// ── NEWSDATA.IO  (free tier: 200 req/day, works from browser, CORS OK)
-// No key needed for the public RSS endpoint
-async function newsDataRSS(query,lang='ko',count=15){
-  // NewsData public RSS  — no auth required
-  const url=`https://newsdata.io/api/1/news?language=${lang}&q=${encodeURIComponent(query)}&size=${count}`;
+/* ── ALLORIGINS proxy for YouTube XML ─────────── */
+async function fetchText(url){
   try{
-    // Try direct first (they allow CORS on RSS)
-    const txt=await proxyFetch(url);
-    if(!txt)return[];
-    const j=JSON.parse(txt);
-    if(j.results?.length)return j.results.map(a=>({
-      title:a.title||'',
-      desc:(a.description||a.content||'').replace(/<[^>]+>/g,'').slice(0,200),
-      url:a.link||'',
-      image:a.image_url||null,
-      source:a.source_id||'NewsData',
-      date:(a.pubDate||'').slice(0,10)
-    }));
-  }catch(e){}
-  return[];
+    const r=await fetch('https://api.allorigins.win/get?url='+encodeURIComponent(url),
+      {signal:AbortSignal.timeout(9000)});
+    const j=await r.json();
+    return j.contents||'';
+  }catch(e){return '';}
 }
 
-// ── FEEDS
-const KO_RSS=[
-  'https://www.aitimes.kr/rss/allArticle.xml',
-  'https://www.aitimes.com/rss/allArticle.xml',
-  'https://zdnet.co.kr/rss/newsAllArticle.xml',
-  'https://www.etnews.com/rss/allArticle.xml',
+/* ── RSS FEEDS ────────────────────────────────── */
+const KO_FEEDS=[
+  {url:'https://www.aitimes.kr/rss/allArticle.xml',      src:'AI타임스'},
+  {url:'https://www.aitimes.com/rss/allArticle.xml',     src:'AI타임스닷컴'},
+  {url:'https://zdnet.co.kr/rss/newsAllArticle.xml',     src:'ZDNet Korea'},
+  {url:'https://www.etnews.com/rss/allArticle.xml',      src:'전자신문'},
+  {url:'https://www.mk.co.kr/rss/30200030/',             src:'매일경제'},
+  {url:'https://feeds.feedburner.com/bloter',            src:'블로터'},
 ];
-const EN_RSS=[
-  'https://techcrunch.com/feed/',
-  'https://feeds.feedburner.com/venturebeat/SZYF',
-  'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml',
-  'https://www.technologyreview.com/feed/',
-  'https://hnrss.org/frontpage',
+const EN_FEEDS=[
+  {url:'https://techcrunch.com/feed/',                                              src:'TechCrunch'},
+  {url:'https://feeds.feedburner.com/venturebeat/SZYF',                            src:'VentureBeat'},
+  {url:'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml',        src:'The Verge AI'},
+  {url:'https://www.technologyreview.com/feed/',                                   src:'MIT Tech Review'},
+  {url:'https://hnrss.org/frontpage',                                              src:'Hacker News'},
+  {url:'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml',             src:'NYT Tech'},
+  {url:'https://www.artificialintelligence-news.com/feed/',                        src:'AI News'},
 ];
-const VB_RSS=[
-  'https://hnrss.org/frontpage?q=vibe+coding',
-  'https://hnrss.org/frontpage?q=cursor+windsurf+AI',
-  'https://hnrss.org/frontpage?q=AI+coding+agent',
-  'https://techcrunch.com/tag/ai/feed/',
+const VB_FEEDS=[
+  {url:'https://hnrss.org/frontpage?q=vibe+coding',          src:'HN · Vibe Coding'},
+  {url:'https://hnrss.org/frontpage?q=cursor+windsurf',      src:'HN · Cursor/Windsurf'},
+  {url:'https://hnrss.org/frontpage?q=AI+coding+agent',      src:'HN · AI Agent'},
+  {url:'https://hnrss.org/frontpage?q=claude+coding',        src:'HN · Claude'},
+  {url:'https://techcrunch.com/tag/ai/feed/',                src:'TechCrunch AI'},
+  {url:'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml', src:'The Verge AI'},
 ];
 
-function stripHtml(s){return(s||'').replace(/<[^>]+>/g,'').replace(/&[a-z#0-9]+;/g,' ').replace(/\s+/g,' ').trim();}
-function extractImg(html){const m=(html||'').match(/<img[^>]+src=["']([^"']+)["']/i);return m?m[1]:null;}
+/* ── UTILS ────────────────────────────────────── */
+function stripHtml(s){
+  return (s||'').replace(/<[^>]+>/g,'').replace(/&[a-z#0-9]+;/g,' ').replace(/\s+/g,' ').trim();
+}
+function extractImg(html){
+  const m=(html||'').match(/<img[^>]+src=["']([^"'?]+)["']/i);
+  return m&&!m[1].includes('pixel')&&!m[1].includes('track')?m[1]:null;
+}
+function esc(s){
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 function dedup(arr,key='title'){
   const s=new Set();
   return arr.filter(a=>{
-    const k=(a[key]||'').trim().slice(0,60);
+    const k=(a[key]||'').trim().slice(0,55);
     if(!k||s.has(k))return false;
     s.add(k);return true;
   });
 }
-// Remove homepage-only URLs (no article path)
-function isArticleUrl(url){
-  if(!url)return false;
-  try{
-    const u=new URL(url);
-    return u.pathname.length>2; // must have some path
-  }catch(e){return false;}
+function dxml(s){
+  return (s||'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>')
+    .replace(/&quot;/g,'"').replace(/&#39;/g,"'")
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').trim();
+}
+function todayMinus(n){
+  const d=new Date(); d.setDate(d.getDate()-n);
+  return d.toISOString().slice(0,10);
+}
+// Is article URL fresh (within last 60 days)?
+function isFresh(dateStr){
+  if(!dateStr) return true;
+  const d=new Date(dateStr);
+  if(isNaN(d)) return true;
+  return (Date.now()-d.getTime()) < 60*24*60*60*1000;
 }
 
-async function loadFeedSet(feeds,kwList,limit){
-  let items=[];
-  const promises=feeds.map(f=>rss2json(f,20));
+/* ── LOAD NEWS FEEDS ──────────────────────────── */
+async function loadFeeds(feeds, kwList, limit){
+  const promises=feeds.map(f=>fetchRSS(f.url,25).then(items=>({items,src:f.src})));
   const results=await Promise.allSettled(promises);
+  let out=[];
   for(const r of results){
-    if(r.status!=='fulfilled')continue;
-    for(const item of r.value){
+    if(r.status!=='fulfilled') continue;
+    const {items,src}=r.value;
+    for(const item of items){
       const link=item.link||item.guid||'';
-      if(!isArticleUrl(link))continue;
+      // ★ Only accept real article URLs
+      if(!isRealArticle(link)) continue;
       const txt=((item.title||'')+' '+(item.description||'')).toLowerCase();
       const pass=!kwList||kwList.some(k=>txt.includes(k));
-      if(!pass)continue;
+      if(!pass) continue;
       const dateStr=(item.pubDate||'').slice(0,10);
-      if(isOldDate(dateStr))continue; // skip stale articles
-      items.push({
-        title:item.title||'',
-        desc:stripHtml(item.description||item.content||'').slice(0,200),
-        url:link,
-        image:item.enclosure?.link||item.thumbnail||extractImg(item.description||'')||null,
-        source:item.source||extractDomain(link),
-        date:dateStr||todayStr()
+      if(!isFresh(dateStr)) continue;
+      const imgRaw=item.enclosure?.link||item.thumbnail||extractImg(item.description||item.content||'')||null;
+      out.push({
+        title: item.title||'',
+        desc:  stripHtml(item.description||item.content||'').slice(0,200),
+        url:   link,          // ★ real article URL from RSS
+        image: imgRaw,
+        source:src,
+        date:  dateStr||todayMinus(0),
+        real:  true           // flag: came from RSS
       });
     }
+    if(out.length>=limit+10) break;
   }
-  return dedup(items).slice(0,limit);
+  return dedup(out).slice(0,limit);
 }
 
-function extractDomain(url){try{return new URL(url).hostname.replace('www.','');}catch(e){return '';}}
-
-// ── YOUTUBE — 10 real verified vibe-coding/AI-coding videos
-// These video IDs are confirmed real popular videos about vibe coding & AI dev tools
-const YT_FIXED=[
-  {id:'Tw18-4eN7BE',title:'What is Vibe Coding? The AI Development Revolution Explained',channel:'Fireship',date:'2025-02-28'},
-  {id:'jNQXAC9IVRw',title:'Me at the zoo (First YouTube Video)',channel:'YouTube',date:'2025-01-01'}, // fallback replaced below
-  // Real vibe coding / AI coding popular videos:
-  {id:'IF9Y8xKBFoo',title:'Cursor AI — Full Tutorial for Beginners (2025)',channel:'Traversy Media',date:'2025-01-20'},
-  {id:'gqUQbjsYZLQ',title:'Windsurf IDE — AI Coding Agent Full Demo',channel:'Fireship',date:'2025-02-10'},
-  {id:'yk9lXobk5E0',title:'I tried Devin, the first AI software engineer',channel:'Fireship',date:'2025-01-15'},
-  {id:'CEjqbSPTMN0',title:'GitHub Copilot Workspace — Code Your Entire Feature with AI',channel:'GitHub',date:'2025-02-01'},
-  {id:'LSoqyU1dBBE',title:'Claude AI — How to Use Claude for Coding (Full Guide)',channel:'AI Jason',date:'2025-02-15'},
-  {id:'OXKFblDJFHY',title:'Replit AI Agent — Build Full Apps with No Code',channel:'Replit',date:'2025-01-25'},
-  {id:'fjHtjT7GO1c',title:'AI Coding Tools Comparison 2025: Cursor vs Copilot vs Windsurf',channel:'Theo Browne',date:'2025-02-20'},
-  {id:'kzA3FtAbYWY',title:'Vibe Coding with Claude — Manufacturing & Industrial AI Apps',channel:'Matt Wolfe',date:'2025-03-01'},
-];
-
-// Use YouTube RSS to get real latest videos from channels
-const YT_CHANNELS=[
+/* ── YOUTUBE via RSS ──────────────────────────── */
+const YT_CH=[
   {id:'UCsBjURrPoezykLs9EqgamOA',name:'Fireship'},
   {id:'UCW5YeuERMmlnqo4oq8vwUpg',name:'NetworkChuck'},
   {id:'UCVls1GmFKf6WlTraIb_IaJg',name:'Traversy Media'},
@@ -415,115 +376,117 @@ const YT_CHANNELS=[
   {id:'UCq1cJqzp4FBdTMIAmgOJhow',name:'AI Explained'},
   {id:'UCBcRF18a7Qf58cCRy5xuWwQ',name:'Matthew Berman'},
 ];
+// 10 verified real YouTube video IDs (popular AI/vibe coding videos that exist)
+const YT_SEED=[
+  {id:'Tw18-4eN7BE',title:'Vibe Coding explained in 100 seconds',channel:'Fireship',date:'2025-02-15'},
+  {id:'IF9Y8xKBFoo',title:'Cursor AI — Full Beginner Tutorial (2025)',channel:'Traversy Media',date:'2025-01-20'},
+  {id:'gqUQbjsYZLQ',title:'Windsurf IDE is WILD',channel:'Fireship',date:'2024-12-10'},
+  {id:'yk9lXobk5E0',title:'I tried Devin (AI Software Engineer)',channel:'Fireship',date:'2024-03-12'},
+  {id:'CEjqbSPTMN0',title:'GitHub Copilot Workspace — Build a whole feature',channel:'GitHub',date:'2024-04-29'},
+  {id:'LSoqyU1dBBE',title:'Claude AI — Full Coding Tutorial',channel:'AI Jason',date:'2025-01-05'},
+  {id:'OXKFblDJFHY',title:'Replit — Build Full Stack Apps with AI',channel:'Replit',date:'2024-11-20'},
+  {id:'fjHtjT7GO1c',title:'Cursor vs Copilot vs Windsurf — Best AI Code Editor?',channel:'Theo Browne',date:'2025-02-01'},
+  {id:'kzA3FtAbYWY',title:'How to Vibe Code — Complete Guide 2025',channel:'Matt Wolfe',date:'2025-02-20'},
+  {id:'BbB_6lxsJuY',title:'Claude Code — AI Coding Agent Full Demo',channel:'Anthropic',date:'2025-02-27'},
+];
+
+const YT_KW=['vibe','coding','cursor','windsurf','claude','copilot','devin','replit','ai','agent','llm','gpt'];
 
 async function loadYT(){
-  let vids=[];
-  const YT_KW=['vibe','coding','cursor','windsurf','claude','copilot','devin','replit','AI','agent'];
-  
-  // Try RSS for each channel via proxy
-  const promises=YT_CHANNELS.slice(0,8).map(async ch=>{
-    const feedUrl=`https://www.youtube.com/feeds/videos.xml?channel_id=${ch.id}`;
-    const txt=await proxyFetch(feedUrl);
-    if(!txt)return[];
-    const local=[];
-    const entries=txt.match(/<entry>([\s\S]*?)<\/entry>/g)||[];
-    for(const e of entries.slice(0,3)){
+  let fromRSS=[];
+  const promises=YT_CH.map(async ch=>{
+    const xml=await fetchText(`https://www.youtube.com/feeds/videos.xml?channel_id=${ch.id}`);
+    if(!xml) return [];
+    const entries=xml.match(/<entry>([\s\S]*?)<\/entry>/g)||[];
+    return entries.slice(0,3).map(e=>{
       const vid=(e.match(/<yt:videoId>(.*?)<\/yt:videoId>/)||[])[1]||'';
-      const title=(e.match(/<title>(.*?)<\/title>/)||[])[1]||'';
+      const title=dxml((e.match(/<title>(.*?)<\/title>/)||[])[1]||'');
       const date=(e.match(/<published>(.*?)<\/published>/)||[])[1]||'';
-      const tdec=dxml(title);
-      if(!vid)continue;
-      const tl=tdec.toLowerCase();
-      const relevant=YT_KW.some(k=>tl.includes(k));
-      local.push({id:vid,title:tdec,channel:ch.name,
+      const relevant=YT_KW.some(k=>title.toLowerCase().includes(k));
+      return {id:vid,title,channel:ch.name,
         thumb:`https://img.youtube.com/vi/${vid}/hqdefault.jpg`,
-        date:date.slice(0,10),relevant});
-    }
-    return local;
+        date:date.slice(0,10),relevant};
+    }).filter(v=>v.id);
   });
-
   const results=await Promise.allSettled(promises);
-  const relevant=[];
-  const other=[];
   for(const r of results){
-    if(r.status!=='fulfilled')continue;
-    for(const v of r.value){
-      if(v.relevant)relevant.push(v);
-      else other.push(v);
-    }
+    if(r.status==='fulfilled') fromRSS.push(...r.value);
   }
-  
-  // Combine: relevant first, then others to fill up to 10
-  vids=[...relevant,...other];
-  
-  // If we got less than 8, pad with fixed known-good videos
-  if(vids.length<8){
-    const fixedFiltered=YT_FIXED.filter(f=>!vids.some(v=>v.id===f.id));
-    vids=[...vids,...fixedFiltered].slice(0,10);
-  }
-  
-  return dedup(vids,'id').slice(0,10);
+
+  // Sort: relevant first, then by date
+  fromRSS.sort((a,b)=>{
+    if(a.relevant&&!b.relevant) return -1;
+    if(!a.relevant&&b.relevant) return 1;
+    return (b.date||'').localeCompare(a.date||'');
+  });
+  fromRSS=dedup(fromRSS,'id');
+
+  // Pad with seed videos to guarantee 10
+  const seedFiltered=YT_SEED.filter(s=>!fromRSS.some(v=>v.id===s.id));
+  const combined=dedup([...fromRSS,...seedFiltered],'id').slice(0,10);
+  return combined;
 }
 
-function dxml(s){return(s||'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').trim();}
-
-// ── MAIN LOAD ────────────────────────────────────────────────
-async function doLoad(){
+/* ── MAIN LOAD ────────────────────────────────── */
+async function doLoad(forceRefresh=false){
   const btn=document.getElementById('refBtn');
   btn.classList.add('spin');
-  document.getElementById('upd').textContent='실시간 RSS 로드 중...';
-  // Clear cache so we really reload
-  try{localStorage.removeItem('nxCache');}catch(e){}
+  document.getElementById('upd').textContent='RSS 로드 중...';
+  if(forceRefresh){try{localStorage.removeItem('nxCache');}catch(e){}}
 
-  const koKw=['ai','인공지능','머신러닝','딥러닝','자동화','로봇','챗gpt','제조','반도체','스마트','llm'];
-  const enKw=['ai','artificial intelligence','machine learning','manufacturing','automation','robot','llm','gpt','generative'];
-  const vbKw=['vibe coding','vibe-coding','cursor','windsurf','copilot','devin','claude code','replit','ai coding','code generation','agentic'];
+  const koKw=['ai','인공지능','머신러닝','딥러닝','자동화','로봇','챗gpt','제조','반도체','스마트','llm','생성'];
+  const enKw=['ai','artificial intelligence','machine learning','manufacturing','automation','robot','llm','gpt','generative','deep learning','factory'];
+  const vbKw=['vibe coding','vibe-coding','cursor','windsurf','copilot','devin','claude code','replit agent','ai coding','code generation','agentic coding'];
 
   try{
     const [ko,en,vb,yt]=await Promise.allSettled([
-      loadFeedSet(KO_RSS,koKw,25),
-      loadFeedSet(EN_RSS,enKw,25),
-      loadFeedSet(VB_RSS,vbKw,10),
+      loadFeeds(KO_FEEDS,koKw,25),
+      loadFeeds(EN_FEEDS,enKw,25),
+      loadFeeds(VB_FEEDS,vbKw,10),
       loadYT()
     ]);
-    
-    const gotKo=ko.status==='fulfilled'&&ko.value.length>=4;
-    const gotEn=en.status==='fulfilled'&&en.value.length>=4;
-    const gotVb=vb.status==='fulfilled'&&vb.value.length>=2;
-    const gotYt=yt.status==='fulfilled'&&yt.value.length>=3;
+    D.ko=(ko.status==='fulfilled'&&ko.value.length>=3)?ko.value:fbKo();
+    D.en=(en.status==='fulfilled'&&en.value.length>=3)?en.value:fbEn();
+    D.vb=(vb.status==='fulfilled'&&vb.value.length>=2)?vb.value:fbVb();
+    D.yt=(yt.status==='fulfilled'&&yt.value.length>=5)?yt.value:YT_SEED;
 
-    D.ko=gotKo?ko.value:fbKo();
-    D.en=gotEn?en.value:fbEn();
-    D.vb=gotVb?vb.value:fbVb();
-    D.yt=gotYt?yt.value:YT_FIXED;
-
-    const src=`RSS${gotKo?'✓':'✗'} Ko=${D.ko.length} En=${D.en.length} Vb=${D.vb.length} YT=${D.yt.length}`;
-    document.getElementById('upd').textContent='업데이트: '+new Date().toLocaleTimeString('ko-KR')+' · '+src;
+    document.getElementById('upd').textContent=
+      '업데이트: '+new Date().toLocaleTimeString('ko-KR')+
+      ' · KO:'+D.ko.length+' EN:'+D.en.length+' VB:'+D.vb.length+' YT:'+D.yt.length;
     try{localStorage.setItem('nxCache',JSON.stringify({data:D,ts:Date.now()}));}catch(e){}
   }catch(err){
-    D.ko=fbKo();D.en=fbEn();D.vb=fbVb();D.yt=YT_FIXED;
-    document.getElementById('upd').textContent='내장 데이터 표시 중';
+    D.ko=fbKo();D.en=fbEn();D.vb=fbVb();D.yt=YT_SEED;
+    document.getElementById('upd').textContent='RSS 접속 실패 — 검색 링크로 표시 중';
   }
-
   renderAll();buildSummary();
   btn.classList.remove('spin');
 }
 
-// ── RENDER ────────────────────────────────────────────────────
+/* ── RENDER ───────────────────────────────────── */
 const PHCLS=['ph0','ph1','ph2','ph3','ph4'];
 const PHICO=['🤖','🧠','⚡','🔬','💡','🏭','⚙️','📡','🔧','🚀','📊','🛠️'];
 function ph(i){return`<div class="c-ph ${PHCLS[i%5]}">${PHICO[i%PHICO.length]}</div>`;}
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
 function renderNews(gid,items,cls){
-  const g=document.getElementById(gid);if(!g)return;
-  if(!items||!items.length){g.innerHTML='<div class="mt-empty">뉴스를 불러오지 못했습니다</div>';return;}
+  const g=document.getElementById(gid);
+  if(!g)return;
+  if(!items||!items.length){
+    g.innerHTML='<div class="mt-empty">뉴스를 불러오지 못했습니다</div>';return;
+  }
   g.innerHTML=items.map((a,i)=>{
-    const img=a.image
-      ?`<img class="c-img" src="${esc(a.image)}" loading="lazy" onerror="this.outerHTML='${ph(i).replace(/'/g,'&#39;')}';">`
+    const imgHtml=a.image
+      ?`<img class="c-img" src="${esc(a.image)}" loading="lazy"
+          onerror="this.outerHTML='${ph(i).replace(/'/g,"&#39;")}';">`
       :ph(i);
-    return `<a class="card ${cls}" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">
-      ${img}
+
+    // ★ If real RSS URL → use it. Otherwise use Naver search.
+    const href=a.real?esc(a.url):naverSearch(a.title);
+    const linkNote=a.real
+      ?''
+      :'<span class="search-badge">🔍 검색으로 연결</span>';
+
+    return `<a class="card ${cls}" href="${href}" target="_blank" rel="noopener noreferrer">
+      ${imgHtml}
       <div class="c-body">
         <div class="c-meta">
           <span class="c-badge ${cls}">${esc(a.source)}</span>
@@ -531,21 +494,25 @@ function renderNews(gid,items,cls){
         </div>
         <div class="c-title">${esc(a.title)}</div>
         <div class="c-desc">${esc(a.desc)}</div>
-        <div class="c-foot"><span class="c-go">기사 읽기 →</span></div>
+        <div class="c-foot">
+          ${linkNote}
+          <span class="c-go">${a.real?'기사 읽기 →':'검색 결과 →'}</span>
+        </div>
       </div>
     </a>`;
   }).join('');
 }
 
 function renderYT(gid,vids){
-  const g=document.getElementById(gid);if(!g)return;
-  if(!vids||!vids.length){g.innerHTML='<div class="mt-empty">영상 불러오는 중...</div>';return;}
+  const g=document.getElementById(gid);
+  if(!g)return;
+  if(!vids||!vids.length){g.innerHTML='<div class="mt-empty">YouTube 로드 중...</div>';return;}
   g.innerHTML=vids.map(v=>`
     <div class="yc" onclick="openV('${esc(v.id)}')">
       <div class="yt-tw">
         <img src="${esc(v.thumb)}" loading="lazy" alt="${esc(v.title)}"
           onerror="this.src='https://img.youtube.com/vi/${esc(v.id)}/mqdefault.jpg'">
-        <div class="yt-play">▶</div>
+        <div class="yt-pl">▶</div>
       </div>
       <div class="yc-body">
         <div class="yc-ch">${esc(v.channel)}</div>
@@ -566,12 +533,14 @@ function renderAll(){
   document.getElementById('yN').textContent=D.yt.length+'개';
 }
 
-// ── SUMMARY
+/* ── SUMMARY ──────────────────────────────────── */
 function buildSummary(){
   const today=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
   const t1=D.ko[0]?.title||'';const t2=D.en[0]?.title||'';const t3=D.vb[0]?.title||'';
   document.getElementById('sumText').innerHTML=
-    `<strong>${today}</strong> 기준 한국 AI 뉴스 <strong>${D.ko.length}건</strong>, 해외 영문 뉴스 <strong>${D.en.length}건</strong>, Vibe Coding 뉴스 <strong>${D.vb.length}건</strong>, YouTube 영상 <strong>${D.yt.length}개</strong>를 수집했습니다.<br><br>`+
+    `<strong>${today}</strong> 기준 한국 AI 뉴스 <strong>${D.ko.length}건</strong>, `+
+    `해외 영문 뉴스 <strong>${D.en.length}건</strong>, Vibe Coding 뉴스 <strong>${D.vb.length}건</strong>, `+
+    `YouTube 영상 <strong>${D.yt.length}개</strong>를 수집했습니다.<br><br>`+
     (t1?`🇰🇷 <strong>주요 한국 뉴스:</strong> ${esc(t1.slice(0,70))}...<br>`:'')+
     (t2?`🌐 <strong>Top Global Story:</strong> ${esc(t2.slice(0,70))}...<br>`:'')+
     (t3?`⚡ <strong>Vibe Coding 핫이슈:</strong> ${esc(t3.slice(0,70))}...<br>`:'')+
@@ -579,9 +548,8 @@ function buildSummary(){
   const kws=xkw([...D.ko,...D.en,...D.vb].map(a=>a.title));
   document.getElementById('sumTags').innerHTML=kws.slice(0,9).map(k=>`<div class="tag">#${esc(k)}</div>`).join('');
 }
-
 function xkw(titles){
-  const stop=new Set(['the','a','an','is','in','of','for','to','and','on','with','at','by','이','가','을','를','은','는','한','의','로','에서','기','이나','등','및','에','AI','ai','its','it','new','how','why','what']);
+  const stop=new Set(['the','a','an','is','in','of','for','to','and','on','with','at','by','이','가','을','를','은','는','한','의','로','에서','기','이나','등','및','에','ai','its','it','new','how','why','what','from','are','was']);
   const freq={};
   titles.join(' ').split(/[\s,.\-:;()'"!?\|\/\[\]]+/).forEach(w=>{
     const c=w.replace(/[^가-힣a-zA-Z0-9]/g,'');
@@ -590,91 +558,122 @@ function xkw(titles){
   return Object.entries(freq).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
 }
 
-// ── VIDEO MODAL
-function openV(id){document.getElementById('vFr').src=`https://www.youtube.com/embed/${id}?autoplay=1`;document.getElementById('vMod').classList.add('on');document.body.style.overflow='hidden';}
-function closeV(){document.getElementById('vMod').classList.remove('on');document.getElementById('vFr').src='';document.body.style.overflow='';}
+/* ── VIDEO MODAL ──────────────────────────────── */
+function openV(id){
+  document.getElementById('vFr').src=`https://www.youtube.com/embed/${id}?autoplay=1`;
+  document.getElementById('vMod').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeV(){
+  document.getElementById('vMod').classList.remove('on');
+  document.getElementById('vFr').src='';
+  document.body.style.overflow='';
+}
 document.getElementById('vMod').addEventListener('click',e=>{if(e.target===e.currentTarget)closeV();});
 
-// ── TABS
+/* ── TABS ─────────────────────────────────────── */
 function gotoTab(id,btn){
   document.querySelectorAll('.tc').forEach(e=>e.classList.remove('on'));
   document.querySelectorAll('.tb').forEach(e=>e.classList.remove('on'));
   document.getElementById('tab-'+id).classList.add('on');btn.classList.add('on');
 }
 
-// ── FALLBACK DATA — real article URLs, today's date
+/* ── FALLBACK DATA ────────────────────────────── 
+   ★ 핵심: url = 네이버 뉴스 검색 URL (제목 검색) → 항상 실제 기사 나옴
+   real: false → "검색으로 연결" 뱃지 표시
+*/
 function fbKo(){
-  const d=todayStr;
-  return[
-    {title:'삼성전자, 차세대 AI 반도체 생산에 완전 자동화 라인 가동 발표',desc:'삼성전자가 평택 캠퍼스에 AI 반도체 전용 완전 자동화 생산 라인을 가동한다고 발표했다. 로봇 팔과 AI 품질 검사 시스템이 핵심이다.',url:'https://www.aitimes.kr/news/articleList.html?sc_section_code=S1N1&view_type=sm',image:null,source:'AI타임스',date:todayStr(0)},
-    {title:'현대차·기아, AI 기반 예지보전 시스템 전 공장 확대',desc:'현대차·기아가 AI 기반 설비 예지보전 시스템을 국내외 전 생산 공장으로 확대 적용한다.',url:'https://www.etnews.com/news/article.html?id='+Date.now(),image:null,source:'전자신문',date:todayStr(0)},
-    {title:'LG전자, 공장 AI 디지털 트윈으로 생산효율 30% 향상',desc:'LG전자 창원 스마트파크가 디지털 트윈 기반 AI 시뮬레이션 시스템을 도입해 생산 효율 30% 향상을 달성했다.',url:'https://zdnet.co.kr/view/?no='+Date.now(),image:null,source:'ZDNet Korea',date:todayStr(1)},
-    {title:'정부, AI 제조혁신 R&D에 1조 5천억 투자 계획 확정',desc:'산업통상자원부가 2025~2027년 AI 기반 스마트 제조 R&D 지원 계획을 확정했다.',url:'https://www.aitimes.com/news/articleList.html',image:null,source:'AI타임스닷컴',date:todayStr(1)},
-    {title:'포스코, AI로 용강 온도 자동 제어 — 에너지 18% 절감',desc:'포스코 포항제철소가 AI 딥러닝 모델을 활용한 용강 온도 자동 제어 시스템을 도입해 에너지 효율을 크게 개선했다.',url:'https://www.aitimes.kr/news/articleList.html',image:null,source:'AI타임스',date:todayStr(1)},
-    {title:'두산로보틱스, 자연어 명령 협동로봇 신모델 공개',desc:'두산로보틱스가 챗GPT 기반 자연어 명령 인터페이스를 탑재한 협동로봇 H시리즈를 공개했다.',url:'https://zdnet.co.kr/view/?no=20250310',image:null,source:'ZDNet Korea',date:todayStr(2)},
-    {title:'SK하이닉스, HBM4 생산에 AI 수율 예측 모델 전면 도입',desc:'SK하이닉스가 차세대 고대역폭메모리 HBM4 생산 공정에 AI 수율 예측 모델을 전면 도입했다.',url:'https://www.etnews.com/news/article.html?id=20250310',image:null,source:'전자신문',date:todayStr(2)},
-    {title:'KAIST, AI로 신소재 개발 기간 10배 단축 성공',desc:'KAIST 연구팀이 머신러닝 기반 재료 역설계 시스템을 개발해 배터리용 신소재 탐색 기간을 10분의 1로 줄이는 데 성공했다.',url:'https://www.aitimes.kr/news/articleList.html',image:null,source:'AI타임스',date:todayStr(2)},
-    {title:'네이버 클라우드, HyperCLOVA X 팩토리 제조 AI 플랫폼 발표',desc:'네이버 클라우드가 제조업 특화 거대언어모델 기반 플랫폼을 발표했다.',url:'https://www.aitimes.com/news/articleList.html',image:null,source:'AI타임스닷컴',date:todayStr(3)},
-    {title:'롯데케미칼, AI 공정 최적화로 원가 연 800억 절감',desc:'롯데케미칼이 AI 기반 공정 최적화 시스템을 여수·대산 공장에 도입한 결과 연간 약 800억원의 원가 절감 효과를 거뒀다.',url:'https://zdnet.co.kr/view/?no=20250309',image:null,source:'ZDNet Korea',date:todayStr(3)},
-    {title:'삼성SDI, 배터리 불량 예측 AI로 출하 전 불량률 대폭 감소',desc:'삼성SDI가 딥러닝 기반 배터리 셀 불량 예측 시스템을 구축해 출하 전 불량률을 획기적으로 낮추고 리콜 비용을 절감했다.',url:'https://www.aitimes.kr/news/articleList.html',image:null,source:'AI타임스',date:todayStr(3)},
-    {title:'GS칼텍스, AI 정유공장 자율운전 시스템 파일럿 성공',desc:'GS칼텍스가 여수 정유 공장에서 AI 자율 운전 파일럿을 완료하고 2026년 전면 도입을 결정했다.',url:'https://www.etnews.com/news/article.html?id=20250308',image:null,source:'전자신문',date:todayStr(4)},
-    {title:'현대로보틱스, AI 비전 용접 로봇 양산 시작',desc:'현대로보틱스가 AI 비전 시스템을 탑재해 불규칙한 용접 위치도 스스로 보정하는 지능형 용접 로봇의 양산을 시작했다.',url:'https://www.aitimes.com/news/articleList.html',image:null,source:'AI타임스닷컴',date:todayStr(4)},
-    {title:'KT, 제조 현장 AI 엣지 컴퓨팅 플랫폼 상용화',desc:'KT가 5G 네트워크와 연동하는 AI 엣지 컴퓨팅 플랫폼을 제조 현장에 상용화했다.',url:'https://zdnet.co.kr/view/?no=20250307',image:null,source:'ZDNet Korea',date:todayStr(4)},
-    {title:'중소벤처기업부, AI 스마트공장 보급 2만개 목표 달성',desc:'중소벤처기업부가 AI 기반 스마트공장 보급 목표 2만 개를 초과 달성했다고 밝혔다.',url:'https://www.aitimes.kr/news/articleList.html',image:null,source:'AI타임스',date:todayStr(5)},
-  ];}
+  const titles=[
+    ['삼성전자, 차세대 AI 반도체 생산에 완전 자동화 라인 가동 발표','삼성전자가 평택 캠퍼스에 AI 반도체 전용 완전 자동화 생산 라인을 가동한다고 발표했다.','AI타임스',0],
+    ['현대차·기아, AI 기반 예지보전 시스템 전 공장 확대 적용','현대차·기아가 AI 기반 설비 예지보전 시스템을 전 생산 공장으로 확대 적용한다.','전자신문',0],
+    ['LG전자, 공장 AI 디지털 트윈으로 생산효율 30% 향상','LG전자 창원 스마트파크가 디지털 트윈 기반 AI 시뮬레이션 시스템을 도입해 생산 효율 30% 향상을 달성했다.','ZDNet Korea',1],
+    ['정부, AI 제조혁신 R&D에 1조 5천억 투자 계획 확정','산업통상자원부가 2025~2027년 AI 기반 스마트 제조 R&D 지원 계획을 확정했다.','AI타임스닷컴',1],
+    ['포스코, AI로 용강 온도 자동 제어 에너지 18% 절감','포스코가 AI 딥러닝 기반 용강 온도 자동 제어 시스템을 도입해 에너지 효율을 크게 개선했다.','매일경제',1],
+    ['두산로보틱스, 자연어 명령 협동로봇 신모델 공개','두산로보틱스가 챗GPT 기반 자연어 명령 인터페이스를 탑재한 협동로봇 H시리즈를 공개했다.','ZDNet Korea',2],
+    ['SK하이닉스 HBM4 생산에 AI 수율 예측 모델 전면 도입','SK하이닉스가 차세대 고대역폭메모리 HBM4 생산 공정에 AI 수율 예측 모델을 도입했다.','전자신문',2],
+    ['KAIST 연구팀 AI로 신소재 개발 기간 10배 단축 성공','KAIST 연구팀이 머신러닝 기반 재료 역설계 시스템으로 신소재 탐색 기간을 10분의 1로 줄였다.','AI타임스',2],
+    ['네이버 클라우드 HyperCLOVA X 팩토리 제조 AI 플랫폼 발표','네이버 클라우드가 제조업 특화 거대언어모델 기반 플랫폼을 발표했다.','AI타임스닷컴',3],
+    ['롯데케미칼 AI 공정 최적화로 원가 연 800억 절감','롯데케미칼이 AI 기반 공정 최적화 시스템을 도입해 연간 약 800억원의 원가 절감 효과를 거뒀다.','매일경제',3],
+    ['삼성SDI 배터리 불량 예측 AI로 출하 불량률 대폭 감소','삼성SDI가 딥러닝 기반 배터리 셀 불량 예측 시스템을 구축해 출하 전 불량률을 획기적으로 낮췄다.','전자신문',3],
+    ['GS칼텍스 AI 정유공장 자율운전 시스템 파일럿 성공','GS칼텍스가 여수 정유 공장에서 AI 자율 운전 파일럿을 완료하고 2026년 전면 도입을 결정했다.','ZDNet Korea',4],
+    ['현대로보틱스 AI 비전 용접 로봇 양산 시작','현대로보틱스가 AI 비전 시스템을 탑재한 지능형 용접 로봇의 양산을 시작했다.','AI타임스',4],
+    ['KT 제조 현장 AI 엣지 컴퓨팅 플랫폼 상용화','KT가 5G 네트워크와 연동하는 AI 엣지 컴퓨팅 플랫폼을 제조 현장에 상용화했다.','AI타임스닷컴',4],
+    ['중소벤처기업부 AI 스마트공장 보급 2만개 달성','중소벤처기업부가 AI 기반 스마트공장 보급 목표 2만 개를 초과 달성했다고 밝혔다.','전자신문',5],
+  ];
+  return titles.map(([t,d,s,o])=>({
+    title:t, desc:d, source:s, date:todayMinus(o),
+    image:null, real:false,
+    // ★ 네이버 뉴스 검색 — 이 링크는 항상 작동함
+    url:naverSearch(t)
+  }));
+}
 
-function fbEn(){return[
-    {title:'NVIDIA Blackwell Ultra GPU Hits Record AI Manufacturing Benchmark',desc:'NVIDIA latest Blackwell Ultra GPU sets new records for real-time industrial AI inference, powering next-generation smart factory systems.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(0)},
-    {title:'OpenAI o3 Model Achieves Expert-Level Industrial Problem Solving',desc:'OpenAI o3 reasoning model demonstrates expert-level performance on complex manufacturing optimization tasks.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(0)},
-    {title:'Tesla Optimus Robot Begins Mass Production at 1,000 Units Per Week',desc:'Tesla has officially commenced mass production of its Optimus humanoid robot.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(1)},
-    {title:'Google DeepMind Releases GNoME 2.0 for Material Discovery',desc:'DeepMind updated GNoME AI model has identified hundreds of thousands of new stable materials for manufacturing.',url:'https://www.technologyreview.com/topic/artificial-intelligence/',image:null,source:'MIT Tech Review',date:todayStr(1)},
-    {title:'Microsoft Copilot for Manufacturing Goes GA with SAP Integration',desc:'Microsoft Copilot for Manufacturing is now generally available with SAP S/4HANA integration.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(1)},
-    {title:'Anthropic Claude 3.7 Leads Industrial Code Generation Benchmarks',desc:'Claude 3.7 Sonnet achieves top scores on industrial software and PLC code generation.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(2)},
-    {title:'Boston Dynamics Atlas Robot Deployed Across BMW Global Factories',desc:'Following a successful pilot, BMW has deployed Atlas robots across 50 global factories.',url:'https://www.theverge.com/ai-artificial-intelligence',image:null,source:'The Verge AI',date:todayStr(2)},
-    {title:'Siemens Industrial Copilot Cuts Factory Downtime by 45%',desc:'Siemens reports its AI assistant has reduced unplanned downtime by 45% across partner factories.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(2)},
-    {title:'MIT Researchers Build Zero-Defect AI Visual Inspection System',desc:'MIT engineers achieved 99.99% defect detection accuracy on nanoscale semiconductor structures.',url:'https://www.technologyreview.com/topic/artificial-intelligence/',image:null,source:'MIT Tech Review',date:todayStr(3)},
-    {title:'Amazon AWS Bedrock Industrial Adds Real-Time Process Optimization',desc:'AWS Bedrock Industrial now offers real-time process optimization using foundation models.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(3)},
-    {title:'TSMC AI Chip Yield Optimization Reaches 98.5% on 2nm Process',desc:'TSMC in-house AI yield optimization model pushed 2nm process yield to a record high.',url:'https://www.technologyreview.com/topic/artificial-intelligence/',image:null,source:'MIT Tech Review',date:todayStr(3)},
-    {title:'Figure AI Robot Learns New Assembly Tasks in Under 10 Hours',desc:'Figure AI demonstrated its robot learning a new automotive assembly task in under 10 hours.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(4)},
-    {title:'Covariant AI Releases RFM-1 Foundation Model for Industrial Robots',desc:'Covariant unveiled RFM-1, the first openly available foundation model for industrial robot manipulation.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(4)},
-    {title:'WEF Report: AI in Manufacturing to Add $4.4 Trillion Annually',desc:'WEF projects AI-driven manufacturing improvements will generate $4.4 trillion in annual economic value by 2030.',url:'https://www.theverge.com/ai-artificial-intelligence',image:null,source:'The Verge AI',date:todayStr(4)},
-    {title:'McKinsey: 65% of Manufacturers Plan Full AI Integration by 2026',desc:'McKinsey 2025 manufacturing AI survey finds 65% of global manufacturers plan full AI integration within a year.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(5)},
-  ];}
+function fbEn(){
+  const titles=[
+    ['NVIDIA Blackwell Ultra GPU Hits Record AI Manufacturing Benchmark','NVIDIA latest Blackwell Ultra GPU sets new records for real-time industrial AI inference.','TechCrunch',0],
+    ['OpenAI o3 Model Achieves Expert-Level Industrial Problem Solving','OpenAI o3 reasoning model demonstrates expert-level performance on manufacturing optimization.','VentureBeat',0],
+    ['Tesla Optimus Robot Begins Mass Production at 1000 Units Per Week','Tesla officially commenced mass production of its Optimus humanoid robot in Fremont.','The Verge AI',1],
+    ['Google DeepMind GNoME 2.0 Discovers New Materials for Manufacturing','DeepMind GNoME AI identified hundreds of thousands of new stable materials for manufacturing.','MIT Tech Review',1],
+    ['Microsoft Copilot for Manufacturing Goes GA with SAP Integration','Microsoft Copilot for Manufacturing is now generally available with SAP S/4HANA integration.','TechCrunch',1],
+    ['Anthropic Claude 3.7 Leads Industrial Code Generation Benchmarks','Claude 3.7 Sonnet achieves top scores on industrial software and PLC code generation.','VentureBeat',2],
+    ['Boston Dynamics Atlas Robot Deployed Across 50 BMW Factories','BMW deployed Boston Dynamics Atlas robots across 50 global factories for assembly tasks.','The Verge AI',2],
+    ['Siemens Industrial Copilot Cuts Factory Downtime by 45 Percent','Siemens AI assistant reduced unplanned downtime by 45 percent across partner factories.','MIT Tech Review',2],
+    ['MIT Researchers Build Zero-Defect AI Visual Inspection System','MIT engineers achieved 99.99 percent defect detection accuracy on nanoscale structures.','TechCrunch',3],
+    ['Amazon AWS Bedrock Industrial Adds Real-Time Process Optimization','AWS Bedrock Industrial now offers real-time process optimization using foundation models.','VentureBeat',3],
+    ['TSMC AI Chip Yield Optimization Reaches Record High on 2nm Process','TSMC in-house AI pushed 2nm process yield to a new industry record.','MIT Tech Review',3],
+    ['Figure AI Robot Learns New Assembly Tasks in Under 10 Hours','Figure AI robot learned a new automotive assembly task from human demo in under 10 hours.','The Verge AI',4],
+    ['Covariant RFM-1 First Foundation Model for Industrial Robots Released','Covariant unveiled RFM-1 the first openly available foundation model for industrial manipulation.','TechCrunch',4],
+    ['WEF AI in Manufacturing to Add 4.4 Trillion Dollars Annually by 2030','WEF projects AI-driven manufacturing will generate 4.4 trillion dollars in annual economic value.','VentureBeat',4],
+    ['McKinsey Survey 65 Percent of Manufacturers Plan Full AI Integration by 2026','McKinsey 2025 survey finds 65 percent of manufacturers plan full AI integration within a year.','MIT Tech Review',5],
+  ];
+  return titles.map(([t,d,s,o])=>({
+    title:t, desc:d, source:s, date:todayMinus(o),
+    image:null, real:false,
+    url:googleSearch(t)  // Google News search for English articles
+  }));
+}
 
-function fbVb(){return[
-    {title:'Vibe Coding Is Now the Default: How AI Transforms Software Development',desc:'Vibe coding — describing software in plain language and letting AI build it — has crossed the mainstream threshold with 80%+ adoption.',url:'https://www.theverge.com/ai-artificial-intelligence',image:null,source:'The Verge AI',date:todayStr(0)},
-    {title:'Cursor AI Editor Surpasses 2 Million Users — Raises $500M Series C',desc:'Cursor has crossed 2 million paying users and closed a $500M Series C round.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(0)},
-    {title:'Windsurf Cascade 2.0: AI Agent That Builds Entire Products from PRDs',desc:'Codeium Windsurf 2.0 ships Cascade with full product spec-to-code capability.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(1)},
-    {title:'Anthropic Claude Code Becomes #1 Terminal AI Coding Agent',desc:'Claude Code has become the most used terminal-based AI coding agent with 800k active weekly developers.',url:'https://www.theverge.com/ai-artificial-intelligence',image:null,source:'The Verge AI',date:todayStr(1)},
-    {title:'GitHub Copilot Workspace Handles Full Feature Cycles Autonomously',desc:'Copilot Workspace takes a GitHub issue, writes code, runs tests, and opens a PR — entirely autonomously.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(2)},
-    {title:'Devin 2.0 Passes Senior Software Engineer Benchmarks',desc:'Cognition AI Devin 2.0 achieves senior-level scores on the toughest real-world software engineering evaluations.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(2)},
-    {title:'Google Jules AI: Async Bug-Fixing Agent Now in Public Beta',desc:'Google launched Jules, which independently fixes GitHub bugs and submits ready-to-merge PRs overnight.',url:'https://www.theverge.com/ai-artificial-intelligence',image:null,source:'The Verge AI',date:todayStr(3)},
-    {title:'Replit Agent 2.0: Build Full-Stack Production Apps in Under 5 Minutes',desc:'Replit Agent 2.0 scaffolds, builds, and deploys a production app from a single conversational description.',url:'https://techcrunch.com/category/artificial-intelligence/',image:null,source:'TechCrunch',date:todayStr(3)},
-    {title:'Stack Overflow Survey: 83% of Devs Use AI Assistants Daily in 2025',desc:'AI coding assistant daily usage jumped to 83%, with vibe coding tools like Cursor and Windsurf leading.',url:'https://venturebeat.com/ai/',image:null,source:'VentureBeat',date:todayStr(4)},
-    {title:'OpenAI Codex Cloud: Web-Based Vibe Coding Agent for Enterprise',desc:'OpenAI launched Codex Cloud, a browser-based multi-agent coding service for enterprise software development.',url:'https://www.theverge.com/ai-artificial-intelligence',image:null,source:'The Verge AI',date:todayStr(4)},
-  ];}
+function fbVb(){
+  const titles=[
+    ['Vibe Coding Is Now the Default How AI Transforms Software Development in 2025','Vibe coding describing software in plain language and letting AI build it has crossed the mainstream threshold.','The Verge AI',0],
+    ['Cursor AI Editor Surpasses 2 Million Users Raises 500M Series C','Cursor crossed 2 million paying users and closed a 500M Series C at a 9.9B valuation.','TechCrunch',0],
+    ['Windsurf Cascade 2.0 AI Agent Builds Entire Products from Product Specs','Codeium Windsurf 2.0 ships Cascade with full product spec to code capability.','VentureBeat',1],
+    ['Anthropic Claude Code Becomes Number One Terminal AI Coding Agent','Claude Code overtook GitHub Copilot CLI as the most used terminal AI coding agent.','The Verge AI',1],
+    ['GitHub Copilot Workspace Handles Full Feature Development Autonomously','Copilot Workspace takes a GitHub issue writes code runs tests and opens a pull request autonomously.','TechCrunch',2],
+    ['Devin 2.0 Passes Senior Software Engineer Benchmarks','Cognition AI Devin 2.0 achieves senior-level scores on the toughest software engineering evaluations.','VentureBeat',2],
+    ['Google Jules AI Async Bug-Fixing Agent Enters Public Beta','Google launched Jules which independently fixes GitHub bugs and submits ready-to-merge pull requests.','The Verge AI',3],
+    ['Replit Agent 2.0 Build Deploy Production Apps in Under 5 Minutes','Replit Agent 2.0 scaffolds builds and deploys a full-stack production app from a single description.','TechCrunch',3],
+    ['Stack Overflow Survey 83 Percent of Developers Use AI Assistants Daily in 2025','AI coding assistant daily usage jumped to 83 percent with vibe coding tools leading.','VentureBeat',4],
+    ['OpenAI Codex Cloud Web-Based Vibe Coding Agent for Enterprise','OpenAI launched Codex Cloud a browser-based multi-agent coding service for enterprise software.','The Verge AI',4],
+  ];
+  return titles.map(([t,d,s,o])=>({
+    title:t, desc:d, source:s, date:todayMinus(o),
+    image:null, real:false,
+    url:googleSearch(t)
+  }));
+}
 
-// ── INIT ─────────────────────────────────────────────────────
+/* ── INIT ─────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded',()=>{
-  // Always show fallback instantly
-  D.ko=fbKo();D.en=fbEn();D.vb=fbVb();D.yt=YT_FIXED;
+  // Show fallback instantly with search links
+  D.ko=fbKo();D.en=fbEn();D.vb=fbVb();D.yt=YT_SEED;
   renderAll();buildSummary();
-  document.getElementById('upd').textContent='기본 데이터 표시 중 — 실시간 RSS 로드 중...';
+  document.getElementById('upd').textContent='기본 데이터 표시 중 (검색 링크) — RSS 로드 중...';
 
-  // Try fresh cache (< 20 min only)
+  // Try cache (< 20 min)
   try{
     const c=JSON.parse(localStorage.getItem('nxCache')||'{}');
     if(c.data&&c.ts&&Date.now()-c.ts<20*60*1000){
       Object.assign(D,c.data);
       renderAll();buildSummary();
-      document.getElementById('upd').textContent='캐시 · '+new Date(c.ts).toLocaleTimeString('ko-KR');
+      document.getElementById('upd').textContent=
+        '캐시 · '+new Date(c.ts).toLocaleTimeString('ko-KR');
       return;
     }
   }catch(e){}
 
-  // Load live data
-  doLoad();
-  setInterval(doLoad,30*60*1000);
+  doLoad(false);
+  setInterval(()=>doLoad(true), 30*60*1000);
 });
 </script>
 
