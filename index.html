@@ -4,754 +4,576 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI×Materials Daily</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<title>AI 제조혁신 뉴스 대시보드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+  --bg:#f0f4f8;--card:#fff;--border:#e2e8f0;
+  --t1:#0f172a;--t2:#1e293b;--t3:#475569;--t4:#94a3b8;
+  --indigo:#4f46e5;--purple:#7c3aed;--red:#dc2626;--green:#059669;
+  --sh:0 1px 3px rgba(0,0,0,.07);
+  --sh2:0 4px 20px rgba(0,0,0,.09);
+  --sh3:0 14px 40px rgba(0,0,0,.13);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t1);font-family:'Noto Sans KR',sans-serif;min-height:100vh}
+.w{max-width:1200px;margin:0 auto;padding:0 20px}
 
-html, body {
-background: #f0f2f7;
-color: #1a1a2e;
-font-family: ‘Noto Sans KR’, sans-serif;
-min-height: 100vh;
-}
+/* HEADER */
+header{background:#fff;border-bottom:1px solid var(–border);position:sticky;top:0;z-index:200;box-shadow:var(–sh)}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:11px 0;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-ic{width:36px;height:36px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.logo-name{font-size:15px;font-weight:800}
+.logo-name em{color:var(–indigo);font-style:normal}
+.logo-sub{font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
+.hdr-r{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.live-p{display:flex;align-items:center;gap:4px;background:#fef2f2;border:1px solid #fecaca;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;color:#ef4444;font-family:‘Space Mono’,monospace}
+.ld{width:5px;height:5px;background:#ef4444;border-radius:50%;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+#clock{font-family:‘Space Mono’,monospace;font-size:11px;color:var(–t3);background:var(–bg);padding:4px 10px;border-radius:20px;border:1px solid var(–border)}
 
-/* ── Header ─────────────────────────────── */
-header {
-position: sticky; top: 0; z-index: 200;
-background: #ffffff;
-border-bottom: 1px solid #e0e2ea;
-box-shadow: 0 1px 8px rgba(0,0,0,.08);
-}
-.hinner {
-max-width: 1360px; margin: 0 auto;
-padding: 0 1.5rem; height: 60px;
-display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-}
-.logo { display: flex; align-items: center; gap: .7rem; }
-.logo-icon {
-width: 34px; height: 34px; border-radius: 9px;
-background: linear-gradient(135deg, #4356e8, #00a98a);
-display: flex; align-items: center; justify-content: center;
-font-size: 17px; flex-shrink: 0;
-}
-.logo-name { font-family: ‘Space Mono’, monospace; font-size: .92rem; font-weight: 700; color: #1a1a2e; }
-.logo-sub  { font-size: .58rem; color: #9090aa; letter-spacing: .1em; text-transform: uppercase; }
-.hdate { font-family: ‘Space Mono’, monospace; font-size: .7rem; color: #9090aa; }
-.reload-btn {
-background: linear-gradient(135deg, #4356e8, #00a98a);
-border: none; border-radius: 8px; color: #fff;
-padding: .42rem 1.1rem; font-size: .78rem; font-family: ‘Noto Sans KR’, sans-serif;
-font-weight: 500; cursor: pointer; white-space: nowrap; flex-shrink: 0;
-box-shadow: 0 2px 10px rgba(67,86,232,.28);
-transition: opacity .2s, transform .15s;
-}
-.reload-btn:hover  { opacity: .85; transform: translateY(-1px); }
-.reload-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+/* PROGRESS BAR */
+.prog-bar{height:3px;background:linear-gradient(90deg,#4f46e5,#7c3aed);width:0%;transition:width .4s ease;position:fixed;top:0;left:0;z-index:1000}
 
-/* ── Main ────────────────────────────────── */
-main { max-width: 1360px; margin: 0 auto; padding: 1.6rem 1.5rem 5rem; }
+/* AI SUMMARY */
+.ai-card{background:#fff;border-radius:16px;border:1px solid var(–border);overflow:hidden;box-shadow:var(–sh2);margin:18px 0 14px}
+.ai-top{background:linear-gradient(135deg,#4f46e5,#7c3aed,#2563eb);padding:18px 22px;display:flex;gap:13px;align-items:center}
+.ai-av{width:46px;height:46px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ai-t{font-size:16px;font-weight:800;color:#fff}
+.ai-s{font-size:11px;color:rgba(255,255,255,.75);font-family:‘Space Mono’,monospace;margin-top:2px}
+.ai-body{padding:16px 22px 18px}
+#sumText{font-size:14px;line-height:1.85;color:var(–t2)}
+#sumText strong{color:var(–indigo);font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.tag{background:#eef2ff;border:1px solid #c7d2fe;border-radius:20px;padding:3px 10px;font-size:11px;color:#4338ca;font-weight:600}
 
-/* ── Notice ─────────────────────────────── */
-.notice {
-background: #eef9f6; border: 1px solid #b2e4d8;
-border-radius: 12px; padding: .75rem 1.2rem;
-margin-bottom: 1.3rem; font-size: .75rem; line-height: 1.65; color: #1a6e5a;
-}
-.notice strong { color: #00a98a; }
+/* TOOLBAR */
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.upd{font-size:11px;color:var(–t4);font-family:‘Space Mono’,monospace}
+.ref-btn{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;color:var(–t2);cursor:pointer;box-shadow:var(–sh);font-family:‘Noto Sans KR’,sans-serif;transition:background .2s}
+.ref-btn:hover{background:#f1f5f9}
+.ref-btn:disabled{opacity:.5;cursor:not-allowed}
+.ref-btn.spin .ico{animation:rot 1s linear infinite;display:inline-block}
+@keyframes rot{to{transform:rotate(360deg)}}
 
-/* ── Briefing box ───────────────────────── */
-.briefbox {
-background: linear-gradient(135deg, #eef0fd, #eaf8f4);
-border: 1px solid #c8cdf5;
-border-radius: 16px; padding: 1.3rem 1.7rem;
-margin-bottom: 1.7rem;
-box-shadow: 0 2px 14px rgba(67,86,232,.06);
-}
-.brief-badge {
-display: inline-flex; align-items: center; gap: .32rem;
-background: rgba(67,86,232,.1); border: 1px solid rgba(67,86,232,.22);
-border-radius: 20px; padding: .22rem .68rem;
-font-size: .64rem; font-family: ‘Space Mono’, monospace; color: #4356e8;
-margin-bottom: .6rem; letter-spacing: .04em;
-}
-.dot { color: #00a98a; animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.15} }
-.brief-title { font-family: ‘Playfair Display’, serif; font-size: 1.08rem; color: #1a1a2e; margin-bottom: .45rem; }
-#briefText { font-size: .85rem; line-height: 1.82; color: #44445a; }
-#briefText.wait { color: #9090aa; font-style: italic; }
+/* TABS */
+.tabs{display:flex;gap:3px;background:#fff;border:1px solid var(–border);border-radius:10px;padding:3px;margin-bottom:18px;width:fit-content;box-shadow:var(–sh);flex-wrap:wrap}
+.tb{padding:7px 16px;border:none;background:transparent;color:var(–t3);font-size:12px;font-weight:500;border-radius:7px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:‘Noto Sans KR’,sans-serif}
+.tb.on{background:var(–indigo);color:#fff;font-weight:700}
+.tc{display:none}.tc.on{display:block}
 
-/* ── Progress ───────────────────────────── */
-#progWrap { margin-bottom: 1.1rem; display: none; }
-.progbar { height: 4px; background: #e0e2ea; border-radius: 2px; overflow: hidden; }
-.progfill { height: 100%; width: 0%; background: linear-gradient(90deg, #4356e8, #00a98a); border-radius: 2px; transition: width .35s ease; }
-#progMsg { font-family: ‘Space Mono’, monospace; font-size: .62rem; color: #9090aa; margin-top: .4rem; }
+/* SECTION HEADER */
+.sec{display:flex;align-items:center;gap:10px;margin:26px 0 13px}
+.sec-p{padding:5px 14px;border-radius:30px;font-size:12px;font-weight:700}
+.sec-p.ko{background:#eff6ff;color:#1d4ed8;border:1.5px solid #bfdbfe}
+.sec-p.en{background:#fffbeb;color:#b45309;border:1.5px solid #fde68a}
+.sec-p.vb{background:#f5f3ff;color:#6d28d9;border:1.5px solid #ddd6fe}
+.sec-p.yt{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca}
+.sec-n{background:#f8fafc;border:1px solid var(–border);border-radius:20px;padding:2px 9px;font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
+.sec-line{flex:1;height:1px;background:var(–border)}
 
-/* ── Filter ─────────────────────────────── */
-.filterbar { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1.3rem; align-items: center; }
-.flabel { font-family: ‘Space Mono’, monospace; font-size: .61rem; letter-spacing: .1em; text-transform: uppercase; color: #9090aa; margin-right: .3rem; }
-.ftag {
-border: 1px solid #d8dae6; background: #fff;
-border-radius: 20px; padding: .25rem .65rem;
-font-size: .69rem; font-family: ‘Noto Sans KR’, sans-serif;
-color: #44445a; cursor: pointer; white-space: nowrap;
-transition: all .14s; box-shadow: 0 1px 3px rgba(0,0,0,.04);
-}
-.ftag:hover { background: #f0f1ff; border-color: #a0a8f0; color: #4356e8; }
-.ftag.on { background: #4356e8; border-color: #4356e8; color: #fff; box-shadow: 0 2px 8px rgba(67,86,232,.3); }
+/* NEWS LIST */
+.news-list{display:flex;flex-direction:column;gap:16px}
 
-/* ── Section head ───────────────────────── */
-.sechead { display: flex; align-items: baseline; gap: .7rem; margin-bottom: 1rem; }
-.sectitle { font-family: ‘Space Mono’, monospace; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: #9090aa; }
-#pcount { font-family: ‘Space Mono’, monospace; font-size: .62rem; color: #9090aa; }
+.ncard{background:#fff;border:1.5px solid var(–border);border-radius:14px;overflow:hidden;box-shadow:var(–sh);cursor:default}
+.ncard.ko{border-left:4px solid #3b82f6}
+.ncard.en{border-left:4px solid #f59e0b}
+.ncard.vb{border-left:4px solid #8b5cf6}
 
-/* ── Grid ───────────────────────────────── */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.2rem; }
+.nc-head{padding:16px 18px 12px;display:flex;align-items:flex-start;gap:12px}
+.nc-num-badge{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;margin-top:2px}
+.ncard.ko .nc-num-badge{background:#dbeafe;color:#1e40af}
+.ncard.en .nc-num-badge{background:#fef3c7;color:#92400e}
+.ncard.vb .nc-num-badge{background:#ede9fe;color:#5b21b6}
 
-/* ── Card ───────────────────────────────── */
-.card {
-background: #ffffff;
-border: 1px solid #e2e4ee;
-border-radius: 15px; overflow: hidden;
-box-shadow: 0 2px 10px rgba(0,0,0,.055);
-transition: transform .2s, box-shadow .2s;
-opacity: 0; animation: fu .4s forwards;
-}
-.card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.11); }
-@keyframes fu { to { opacity:1; transform:translateY(0); } }
-.card:nth-child(1){animation-delay:.03s} .card:nth-child(2){animation-delay:.07s}
-.card:nth-child(3){animation-delay:.11s} .card:nth-child(4){animation-delay:.15s}
-.card:nth-child(5){animation-delay:.19s} .card:nth-child(6){animation-delay:.23s}
-.card:nth-child(7){animation-delay:.27s} .card:nth-child(8){animation-delay:.31s}
-.card:nth-child(9){animation-delay:.35s}
+.nc-title-wrap{flex:1;min-width:0}
+.nc-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px}
+.nc-src{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;font-family:‘Space Mono’,monospace;color:var(–t4)}
+.nc-date{font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
+.nc-fresh{font-size:9px;background:#d1fae5;color:#065f46;border-radius:20px;padding:1px 7px;font-weight:700;font-family:‘Space Mono’,monospace}
+.nc-title{font-size:15px;font-weight:800;line-height:1.5;color:var(–t1)}
 
-.card-top { height: 4px; }
-.card-body { padding: 1.05rem 1.25rem 1.25rem; }
+/* article body */
+.nc-body{padding:0 18px 18px 62px}
+.nc-divider{height:1px;background:var(–border);margin-bottom:13px}
+.nc-ai-tag{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#eef2ff,#f5f3ff);border:1px solid #c7d2fe;border-radius:20px;padding:3px 10px;font-size:10px;color:#4338ca;font-weight:700;margin-bottom:10px;font-family:‘Space Mono’,monospace}
+.nc-content{font-size:13.5px;line-height:1.95;color:var(–t2)}
+.nc-content .sent{display:block;padding:2px 0;border-left:3px solid transparent;padding-left:10px;margin-bottom:3px;transition:border-color .2s}
+.nc-content .sent:hover{border-left-color:var(–indigo);background:#fafbff;border-radius:0 4px 4px 0}
+.nc-content .sent b{color:var(–t1)}
 
-.card-meta { display: flex; align-items: center; gap: .4rem; margin-bottom: .62rem; flex-wrap: wrap; }
-.jtag {
-padding: .2rem .56rem; border-radius: 6px;
-font-family: ‘Space Mono’, monospace; font-size: .59rem; font-weight: 700; letter-spacing: .03em;
-}
-.ytag { font-family: ‘Space Mono’, monospace; font-size: .59rem; color: #9090aa; margin-left: auto; }
+/* loading skeleton */
+.skel{display:flex;flex-direction:column;gap:8px;padding:4px 0}
+.skel-line{height:14px;background:linear-gradient(90deg,#f1f5f9 25%,#e2e8f0 50%,#f1f5f9 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-line.w90{width:90%}.skel-line.w80{width:80%}.skel-line.w95{width:95%}.skel-line.w70{width:70%}.skel-line.w85{width:85%}
 
-.card-title {
-font-family: ‘Playfair Display’, serif; font-size: .95rem; line-height: 1.44;
-color: #1a1a2e; margin-bottom: .52rem;
-display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
-.card-auth {
-font-size: .65rem; color: #9090aa; font-family: ‘Space Mono’, monospace;
-margin-bottom: .62rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.sum-label {
-font-size: .57rem; letter-spacing: .08em; text-transform: uppercase;
-font-family: ‘Space Mono’, monospace; color: #00a98a; font-weight: 700; margin-bottom: .26rem;
-}
-.card-sum {
-font-size: .8rem; line-height: 1.72; color: #44445a; margin-bottom: .85rem;
-display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
-}
-.card-sum.pend { color: #9090aa; font-style: italic; }
-.card-sum.fail { color: #c03030; font-size: .73rem; }
+/* YT */
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:13px}
+.yc{background:#fff;border:1.5px solid var(–border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .22s;box-shadow:var(–sh)}
+.yc:hover{transform:translateY(-3px);box-shadow:var(–sh3);border-color:#fca5a5}
+.yt-tw{position:relative;width:100%;padding-top:56.25%;background:#111;overflow:hidden}
+.yt-tw img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.yc:hover .yt-tw img{transform:scale(1.04)}
+.yt-pl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;background:rgba(220,38,38,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;transition:all .2s}
+.yc:hover .yt-pl{transform:translate(-50%,-50%) scale(1.1);background:#dc2626}
+.yc-body{padding:11px}
+.yc-ch{font-size:10px;color:var(–red);font-family:‘Space Mono’,monospace;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.yc-title{font-size:12px;font-weight:700;line-height:1.5;color:var(–t1);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.yc-date{margin-top:6px;font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace}
 
-.card-foot {
-display: flex; align-items: center; justify-content: space-between;
-padding-top: .78rem; border-top: 1px solid #eef0f6; gap: .4rem;
-}
-.card-doi { font-size: .59rem; color: #b0b0c0; font-family: ‘Space Mono’, monospace; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.card-link {
-display: inline-flex; align-items: center; gap: .3rem;
-padding: .3rem .82rem; border-radius: 7px;
-font-size: .69rem; font-weight: 600; color: #fff; text-decoration: none;
-flex-shrink: 0; white-space: nowrap;
-box-shadow: 0 2px 6px rgba(0,0,0,.14);
-transition: opacity .14s, transform .14s;
-}
-.card-link:hover { opacity: .82; transform: translateY(-1px); }
-.card-link svg { width: 10px; height: 10px; }
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
+.modal-bg.on{display:flex}
+.modal-box{background:#fff;border-radius:16px;width:93%;max-width:900px;overflow:hidden;position:relative;box-shadow:0 25px 60px rgba(0,0,0,.35)}
+.modal-box iframe{width:100%;aspect-ratio:16/9;display:block}
+.modal-x{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:15px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center}
+.modal-x:hover{background:#dc2626}
 
-/* ── Empty state ─────────────────────────── */
-.empty { grid-column: 1/-1; text-align: center; padding: 4rem 2rem; color: #9090aa; }
-.empty-icon { font-size: 2.4rem; display: block; margin-bottom: .85rem; }
-.empty h3 { font-family: ‘Playfair Display’, serif; font-size: 1.1rem; color: #44445a; margin-bottom: .42rem; }
-.empty p  { font-size: .77rem; line-height: 1.7; max-width: 440px; margin: 0 auto; }
-
-/* ── Spinner ─────────────────────────────── */
-.sp {
-display: inline-block; width: 12px; height: 12px;
-border: 2px solid #d8dae6; border-top-color: #4356e8;
-border-radius: 50%; animation: spin .65s linear infinite;
-vertical-align: middle; margin-right: .32rem;
+footer{margin-top:50px;background:#fff;border-top:1px solid var(–border);padding:20px 0;text-align:center;font-size:10px;color:var(–t4);font-family:‘Space Mono’,monospace;letter-spacing:1px}
+@media(max-width:640px){
+.nc-body{padding:0 14px 14px 14px}
+.nc-head{padding:14px}
+.yt-grid{grid-template-columns:1fr 1fr}
+.tb{padding:6px 9px;font-size:11px}
 }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #f0f2f7; }
-::-webkit-scrollbar-thumb { background: #ccd; border-radius: 3px; }
-
-/* ── Keyword search bar ─────────────────── */
-.kwbox {
-display: flex; gap: .6rem; align-items: center;
-background: #fff; border: 1px solid #d8dae6;
-border-radius: 13px; padding: .7rem 1rem;
-margin-bottom: 1.3rem;
-box-shadow: 0 1px 6px rgba(0,0,0,.05);
-}
-.kwbox-icon { font-size: 1.1rem; flex-shrink: 0; }
-.kw-inner { flex: 1; display: flex; flex-direction: column; gap: .28rem; }
-.kw-label { font-family: ‘Space Mono’, monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: #9090aa; }
-.kw-row { display: flex; gap: .5rem; align-items: center; }
-.kw-input {
-flex: 1; border: 1px solid #d8dae6; border-radius: 8px;
-padding: .4rem .7rem; font-size: .82rem; font-family: ‘Noto Sans KR’, sans-serif;
-color: #1a1a2e; outline: none; background: #f8f9fc;
-transition: border-color .15s, box-shadow .15s;
-}
-.kw-input:focus { border-color: #4356e8; box-shadow: 0 0 0 3px rgba(67,86,232,.1); background: #fff; }
-.kw-input::placeholder { color: #b0b0c0; }
-.kw-btn {
-background: linear-gradient(135deg, #4356e8, #00a98a);
-border: none; border-radius: 8px; color: #fff;
-padding: .4rem 1rem; font-size: .76rem; font-family: ‘Noto Sans KR’, sans-serif;
-font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0;
-box-shadow: 0 2px 8px rgba(67,86,232,.25);
-transition: opacity .15s, transform .15s;
-}
-.kw-btn:hover { opacity: .85; transform: translateY(-1px); }
-.kw-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
-.kw-chips { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .15rem; }
-.kw-chip {
-background: #f0f1ff; border: 1px solid #c8cdf5;
-border-radius: 12px; padding: .15rem .55rem;
-font-size: .63rem; color: #4356e8; font-family: ‘Noto Sans KR’, sans-serif;
-}
-.kw-chip.active {
-background: #4356e8; border-color: #4356e8; color: #fff;
-font-weight: 700;
-}
-
-@media (max-width: 680px) {
-.grid { grid-template-columns: 1fr; }
-.hinner { padding: 0 1rem; }
-main { padding: 1.1rem 1rem 4rem; }
-.hdate { display: none; }
-}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(–bg)}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
 </style>
 
 </head>
 <body>
 
+<div class="prog-bar" id="progBar"></div>
+
 <header>
-  <div class="hinner">
-    <div class="logo">
-      <div class="logo-icon">⚛</div>
-      <div>
-        <div class="logo-name">AI×Materials Daily</div>
-        <div class="logo-sub">CrossRef API · 실제 논문</div>
+  <div class="w">
+    <div class="hdr">
+      <div class="logo">
+        <div class="logo-ic">🤖</div>
+        <div>
+          <div class="logo-name">AI <em>Manufacturing</em> Nexus</div>
+          <div class="logo-sub">Claude AI 생성 뉴스 · 링크없음 · 새로고침마다 새 기사</div>
+        </div>
+      </div>
+      <div class="hdr-r">
+        <div class="live-p"><div class="ld"></div>LIVE</div>
+        <div id="clock">--:--:--</div>
       </div>
     </div>
-    <div class="hdate" id="hdate"></div>
-    <button class="reload-btn" id="reloadBtn" onclick="load()">🔄 새 논문 보기</button>
   </div>
 </header>
 
-<main>
-  <div class="notice">
-    <strong>📌 동작 방식</strong> —
-    CrossRef API로 실제 출판 논문을 검색하고,
-    <strong>MyMemory 무료 번역 API</strong>로 영문 초록을 한국어로 번역합니다.
-    새로고침마다 다른 논문이 표시됩니다.
-  </div>
+<div class="w">
 
-  <!-- Keyword search bar -->
-
-  <div class="kwbox">
-    <div class="kwbox-icon">🔍</div>
-    <div class="kw-inner">
-      <div class="kw-label">추가 키워드 검색 (최우선 적용)</div>
-      <div class="kw-row">
-        <input class="kw-input" id="kwInput" type="text"
-          placeholder="예: wearable sensor, triboelectric, hydrogel actuator..."
-          onkeydown="if(event.key==='Enter') applyKeyword()">
-        <button class="kw-btn" id="kwBtn" onclick="applyKeyword()">🔄 업데이트</button>
-      </div>
-      <div class="kw-chips" id="kwChips"></div>
+<div class="ai-card">
+  <div class="ai-top">
+    <div class="ai-av">🧠</div>
+    <div>
+      <div class="ai-t">AI 비서 — 오늘의 뉴스 브리핑</div>
+      <div class="ai-s">Claude AI가 최신 AI·제조·Vibe Coding 뉴스를 직접 생성합니다</div>
     </div>
   </div>
-
-  <div class="briefbox">
-    <div class="brief-badge"><span class="dot">●</span> 오늘의 키워드 브리핑</div>
-    <div class="brief-title">오늘의 논문 동향</div>
-    <div id="briefText" class="wait">논문을 불러오는 중입니다...</div>
+  <div class="ai-body">
+    <div id="sumText">뉴스를 생성하는 중입니다...</div>
+    <div class="tags" id="sumTags"></div>
   </div>
+</div>
 
-  <div id="progWrap">
-    <div class="progbar"><div class="progfill" id="progFill"></div></div>
-    <div id="progMsg">준비 중...</div>
-  </div>
+<div class="toolbar">
+  <span class="upd" id="upd">Claude AI 뉴스 생성 중...</span>
+  <button class="ref-btn" id="refBtn" onclick="loadAll()"><span class="ico">↻</span> 새로고침 (새 기사)</button>
+</div>
 
-  <div class="filterbar">
-    <span class="flabel">저널</span>
-    <button class="ftag on"  onclick="setFilter(this,'all')">전체</button>
-    <button class="ftag" onclick="setFilter(this,'Science')">Science</button>
-    <button class="ftag" onclick="setFilter(this,'Advanced Materials')">Adv. Materials</button>
-    <button class="ftag" onclick="setFilter(this,'Science Advances')">Sci. Advances</button>
-    <button class="ftag" onclick="setFilter(this,'Advanced Functional Materials')">Adv. Funct. Mat.</button>
-    <button class="ftag" onclick="setFilter(this,'Science Robotics')">Sci. Robotics</button>
-    <button class="ftag" onclick="setFilter(this,'Nature Machine Intelligence')">Nat. Mach. Intell.</button>
-    <button class="ftag" onclick="setFilter(this,'Nature Electronics')">Nat. Electronics</button>
-    <button class="ftag" onclick="setFilter(this,'Nature Communications')">Nat. Comm</button>
-    <button class="ftag" onclick="setFilter(this,'Nature')">Nature</button>
-    <button class="ftag" onclick="setFilter(this,'Science')">Science</button>
-  </div>
+<div class="tabs">
+  <button class="tb on" onclick="gTab('all',this)">🗂 전체</button>
+  <button class="tb" onclick="gTab('ko',this)">🇰🇷 한국어</button>
+  <button class="tb" onclick="gTab('en',this)">🌐 영문</button>
+  <button class="tb" onclick="gTab('vb',this)">⚡ Vibe Coding</button>
+  <button class="tb" onclick="gTab('yt',this)">▶ YouTube</button>
+</div>
 
-  <div class="sechead">
-    <span class="sectitle">TODAY'S PAPERS</span>
-    <span id="pcount"></span>
-  </div>
+<div class="tc on" id="tab-all">
+  <div class="sec"><div class="sec-p ko">🇰🇷 한국 AI 뉴스</div><div class="sec-n" id="kN">-</div><div class="sec-line"></div></div>
+  <div class="news-list" id="kG"></div>
+  <div class="sec"><div class="sec-p en">🌐 Global AI News</div><div class="sec-n" id="eN">-</div><div class="sec-line"></div></div>
+  <div class="news-list" id="eG"></div>
+  <div class="sec"><div class="sec-p vb">⚡ Vibe Coding 최신 동향</div><div class="sec-n" id="vN">-</div><div class="sec-line"></div></div>
+  <div class="news-list" id="vG"></div>
+  <div class="sec"><div class="sec-p yt">▶ Vibe Coding YouTube</div><div class="sec-n" id="yN">-</div><div class="sec-line"></div></div>
+  <div class="yt-grid" id="yG"></div>
+</div>
+<div class="tc" id="tab-ko">
+  <div class="sec"><div class="sec-p ko">🇰🇷 한국 AI 뉴스</div><div class="sec-line"></div></div>
+  <div class="news-list" id="kG2"></div>
+</div>
+<div class="tc" id="tab-en">
+  <div class="sec"><div class="sec-p en">🌐 Global AI News</div><div class="sec-line"></div></div>
+  <div class="news-list" id="eG2"></div>
+</div>
+<div class="tc" id="tab-vb">
+  <div class="sec"><div class="sec-p vb">⚡ Vibe Coding</div><div class="sec-line"></div></div>
+  <div class="news-list" id="vG2"></div>
+</div>
+<div class="tc" id="tab-yt">
+  <div class="sec"><div class="sec-p yt">▶ YouTube</div><div class="sec-line"></div></div>
+  <div class="yt-grid" id="yG2"></div>
+</div>
 
-  <div class="grid" id="grid">
-    <div class="empty">
-      <span class="empty-icon">⏳</span>
-      <h3>논문 불러오는 중...</h3>
-      <p>잠시만 기다려 주세요.</p>
-    </div>
+<footer>AI MANUFACTURING NEXUS · Claude AI 뉴스 · 새로고침마다 새 기사 · © 2025</footer>
+</div>
+
+<div class="modal-bg" id="vMod">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeV()">✕</button>
+    <iframe id="vFr" src="" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
   </div>
-</main>
+</div>
 
 <script>
-// ================================================================
-// JOURNALS — CrossRef ISSN
-// ================================================================
-const JOURNALS = [
-  // ── Priority group (shown first) ──────────────────────────────
-  { id:'Advanced Materials',            short:'Adv.Mat.',   issn:'0935-9648', color:'#e0922a', bg:'#fff8ee',
-    q:'soft robotics electrochromic perovskite wearable sensor actuator conductive polymer' },
-  { id:'Science Advances',              short:'Sci.Adv.',   issn:'2375-2548', color:'#4caf7d', bg:'#edfaf3',
-    q:'machine learning materials manufacturing device fabrication printed electronics' },
-  { id:'Advanced Functional Materials', short:'AFM',        issn:'1616-3028', color:'#b44ec8', bg:'#fdf2ff',
-    q:'functional material smart device electrochromic wearable flexible sensor actuator' },
-  { id:'Science Robotics',              short:'Sci.Rob.',   issn:'2470-9476', color:'#1e9ed4', bg:'#edf8ff',
-    q:'soft robot autonomous locomotion manipulation gripper tactile machine learning' },
-  // ── Secondary group ───────────────────────────────────────────
-  { id:'Nature Machine Intelligence',   short:'Nat.MI',     issn:'2522-5839', color:'#1bada0', bg:'#edfaf9',
-    q:'materials design robot control image recognition sensor manufacturing' },
-  { id:'Nature Electronics',            short:'Nat.Elec.',  issn:'2520-1131', color:'#7b68ee', bg:'#f4f2ff',
-    q:'neuromorphic computing memory device printed electronics flexible display' },
-  { id:'Nature Communications',         short:'Nat.Comm',   issn:'2041-1723', color:'#3a80d2', bg:'#edf4ff',
-    q:'machine learning materials synthesis device fabrication printed electronics robot' },
-  { id:'Nature',                        short:'Nature',     issn:'0028-0836', color:'#2a9d6e', bg:'#edfaf4',
-    q:'machine learning materials robotics device semiconductor photovoltaic' },
-  { id:'Science',                       short:'Science',    issn:'0036-8075', color:'#e05252', bg:'#fff0f0',
-    q:'artificial intelligence materials robot semiconductor photovoltaic actuator' },
+/* ══ CLOCK ══ */
+setInterval(()=>{
+  document.getElementById('clock').textContent=
+    new Date().toLocaleTimeString('ko-KR',{hour12:false})+' KST';
+},1000);
+
+/* ══ PROGRESS BAR ══ */
+let prog=0;
+function setProgress(p){
+  prog=p;
+  document.getElementById('progBar').style.width=p+'%';
+  if(p>=100)setTimeout(()=>{document.getElementById('progBar').style.width='0%';},600);
+}
+
+/* ══ ESC ══ */
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
+/* ══ TODAY ══ */
+function todayStr(){return new Date().toISOString().slice(0,10);}
+function recentDate(offsetDays=0){
+  const d=new Date();d.setDate(d.getDate()-Math.floor(Math.random()*offsetDays));
+  return d.toISOString().slice(0,10);
+}
+
+/* ══ CLAUDE API CALL ══ */
+async function callClaude(systemPrompt, userPrompt, maxTokens=4000){
+  const resp = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens: maxTokens,
+      system: systemPrompt,
+      messages:[{role:'user', content: userPrompt}]
+    })
+  });
+  const data = await resp.json();
+  const text = data.content?.[0]?.text || '';
+  // Strip markdown code fences if present
+  return text.replace(/^```json\s*/,'').replace(/\s*```$/,'').trim();
+}
+
+/* ══ GENERATE KO NEWS ══ */
+async function generateKoNews(){
+  const today = new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+  const sys = `당신은 한국의 AI·제조·IT 전문 뉴스 편집장입니다.
+오늘 날짜: ${today}
+요청한 JSON 배열을 정확히 반환하세요. 다른 텍스트는 절대 포함하지 마세요.`;
+
+  const usr = `다음 형식으로 한국 AI/제조혁신 최신 뉴스 기사 10개를 생성해주세요.
+각 기사는 실제로 있을 법한 최신 뉴스처럼 작성하되, 오늘(${today}) 기준 최근 1주일 내 뉴스처럼 작성하세요.
+기사마다 다른 주제로 작성하세요: 삼성/LG/현대/SK/포스코 등 대기업 AI 적용, 스마트공장, AI 반도체, 로봇, 정부 정책, 스타트업 등 다양하게.
+
+반환 형식 (JSON 배열):
+[
+  {
+    "title": "기사 제목 (구체적이고 생생하게)",
+    "source": "언론사명 (AI타임스/전자신문/ZDNet Korea/매일경제/블로터 중 하나)",
+    "date": "2025-03-12",
+    "sentences": [
+      "1. 첫번째 문장 — 핵심 뉴스 한 줄 요약.",
+      "2. 두번째 문장 — 배경 설명.",
+      "3. 세번째 문장 — 구체적 수치나 사례.",
+      "4. 네번째 문장.",
+      "5. 다섯번째 문장.",
+      "6. 여섯번째 문장.",
+      "7. 일곱번째 문장.",
+      "8. 여덟번째 문장.",
+      "9. 아홉번째 문장.",
+      "10. 열번째 문장 — 전망 또는 의미."
+    ]
+  }
+]
+
+반드시 10개 기사, 각 10문장, JSON만 반환.`;
+
+  const raw = await callClaude(sys, usr, 4000);
+  return JSON.parse(raw);
+}
+
+/* ══ GENERATE EN NEWS ══ */
+async function generateEnNews(){
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const sys = `You are a senior editor at a global AI & manufacturing news outlet.
+Today's date: ${today}
+Return only valid JSON array. No other text.`;
+
+  const usr = `Generate 10 recent AI/manufacturing/technology news articles in the following JSON format.
+Write them as realistic news from the past week (as of ${today}).
+Cover diverse topics: NVIDIA/OpenAI/Google/Meta/Microsoft/Tesla/robotics/chips/LLM breakthroughs/smart factory/automation.
+
+Return format (JSON array):
+[
+  {
+    "title": "Specific, compelling headline",
+    "source": "One of: TechCrunch / VentureBeat / The Verge AI / MIT Tech Review / Wired AI",
+    "date": "2025-03-12",
+    "sentences": [
+      "1. Lead sentence summarizing the core news.",
+      "2. Background and context.",
+      "3. Specific data point or example.",
+      "4. Fourth sentence.",
+      "5. Fifth sentence.",
+      "6. Sixth sentence.",
+      "7. Seventh sentence.",
+      "8. Eighth sentence.",
+      "9. Ninth sentence.",
+      "10. Final sentence — outlook or significance."
+    ]
+  }
+]
+
+Exactly 10 articles, each with exactly 10 sentences. Return JSON only.`;
+
+  const raw = await callClaude(sys, usr, 4000);
+  return JSON.parse(raw);
+}
+
+/* ══ GENERATE VIBE CODING NEWS ══ */
+async function generateVbNews(){
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const sys = `You are an expert editor covering AI coding tools, vibe coding, and developer tools.
+Today's date: ${today}
+Return only valid JSON array. No other text.`;
+
+  const usr = `Generate 5 recent Vibe Coding / AI coding tools news articles in the following JSON format.
+Topics: Cursor, Windsurf, GitHub Copilot, Claude Code, Devin, Replit Agent, vibe coding trend, LLM-powered IDEs.
+Write as realistic recent news (past week as of ${today}).
+
+Return format (JSON array):
+[
+  {
+    "title": "Specific headline about AI coding tools",
+    "source": "One of: TechCrunch / The Verge AI / Hacker News / VentureBeat / Wired AI",
+    "date": "2025-03-12",
+    "sentences": [
+      "1. Lead sentence.",
+      "2. Context.",
+      "3. Specific detail or data.",
+      "4. Fourth sentence.",
+      "5. Fifth sentence.",
+      "6. Sixth sentence.",
+      "7. Seventh sentence.",
+      "8. Eighth sentence.",
+      "9. Ninth sentence.",
+      "10. Outlook or significance."
+    ]
+  }
+]
+
+Exactly 5 articles, each 10 sentences. JSON only.`;
+
+  const raw = await callClaude(sys, usr, 2500);
+  return JSON.parse(raw);
+}
+
+/* ══ YOUTUBE — static curated list, shuffled each time ══ */
+const YT_ALL=[
+  {id:'Tw18-4eN7BE',title:'Vibe Coding explained in 100 Seconds',channel:'Fireship',date:'2025-02-15'},
+  {id:'IF9Y8xKBFoo',title:'Cursor AI Tutorial for Beginners (2025)',channel:'Traversy Media',date:'2025-01-20'},
+  {id:'gqUQbjsYZLQ',title:'Windsurf IDE is actually wild',channel:'Fireship',date:'2024-12-10'},
+  {id:'yk9lXobk5E0',title:'I tried Devin, the first AI software engineer',channel:'Fireship',date:'2024-03-12'},
+  {id:'CEjqbSPTMN0',title:'GitHub Copilot Workspace – Build entire features with AI',channel:'GitHub',date:'2024-04-29'},
+  {id:'fjHtjT7GO1c',title:'Cursor vs Copilot vs Windsurf – Best AI Code Editor 2025',channel:'Theo Browne',date:'2025-02-01'},
+  {id:'BbB_6lxsJuY',title:'Claude Code – Anthropic AI Coding Agent Full Demo',channel:'Anthropic',date:'2025-02-27'},
+  {id:'kzA3FtAbYWY',title:'How to Vibe Code – Complete Guide 2025',channel:'Matt Wolfe',date:'2025-02-20'},
+  {id:'OXKFblDJFHY',title:'Replit – Build Full Stack Apps with AI (No Code)',channel:'Replit',date:'2024-11-20'},
+  {id:'LSoqyU1dBBE',title:'Claude AI – Full Coding Tutorial for Developers',channel:'AI Jason',date:'2025-01-05'},
+  {id:'aircAruvnKk',title:'Windsurf Cascade – Most Powerful AI Coding Agent?',channel:'AI Explained',date:'2025-01-30'},
+  {id:'FQsg_vN3JtY',title:'Building AI Agents from Scratch – Full Tutorial',channel:'Matt Wolfe',date:'2025-01-10'},
+  {id:'sal78ACtGTc',title:'The State of AI Coding Tools 2025',channel:'Theo Browne',date:'2025-02-10'},
+  {id:'H6ESUMRyAzg',title:'Building with Claude API – Complete Guide',channel:'AI Jason',date:'2025-02-05'},
+  {id:'PKBfNb4BsMQ',title:'How I Use AI to 10x My Coding Speed',channel:'Traversy Media',date:'2025-01-15'},
+  {id:'J-tO8r2H2Fs',title:'Devin AI vs Human Developers – Real World Test',channel:'AI Explained',date:'2024-11-15'},
+  {id:'c8dvR1HckjE',title:'AI is Taking Over Software Engineering',channel:'Fireship',date:'2025-01-25'},
+  {id:'cdiD-9MMpb0',title:'Machine Learning in 23 Minutes',channel:'Fireship',date:'2024-09-20'},
+  {id:'hOfZ0kb0kgY',title:'The Future of AI Coding – Andrej Karpathy',channel:'Andrej Karpathy',date:'2024-11-01'},
+  {id:'dQw4w9WgXcQ',title:'Neural Networks and Deep Learning Explained',channel:'Computerphile',date:'2024-06-15'},
 ];
 
-// ================================================================
-// BASE TOPICS — always included in every journal query
-// ================================================================
-const BASE_TOPICS = [
-  'soft robotics', 'functional materials', 'machine learning',
-  'smart contact lens', 'perovskite', 'image sensing',
-  'meniscus guided printing', 'electrochromic',
-  'wearable sensor', 'flexible electronics'
-].join(' ');
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 
-let customKeyword = ''; // user-entered keyword (highest priority)
+function pickYT(){return shuffle(YT_ALL).slice(0,10);}
 
-// Build query: custom keyword first (most relevant), then base topics
-function buildQuery(journalQ) {
-  const parts = [];
-  if (customKeyword.trim()) parts.push(customKeyword.trim());
-  parts.push(BASE_TOPICS);
-  parts.push(journalQ);
-  return parts.join(' ');
-}
-
-const CR = 'https://api.crossref.org/journals';
-const MT = 'https://api.mymemory.translated.net/get';
-const MAILTO = 'mailto=aimaterialsdaily@example.com';
-
-let papers = [];
-let curFilter = 'all';
-let busy = false;
-
-// ================================================================
-// MAIN LOAD
-// ================================================================
-async function load() {
-  if (busy) return;
-  busy = true;
-
-  const btn = document.getElementById('reloadBtn');
-  btn.disabled = true; btn.textContent = '⏳ 불러오는 중...';
-
-  papers = [];
-  showProg(true); setProgress(0, '저널에 연결 중...');
-  document.getElementById('briefText').className = 'wait';
-  document.getElementById('briefText').textContent = '논문을 불러오는 중입니다...';
-  renderGrid();
-
-  // 1) Fetch all journal papers in parallel
-  let done = 0;
-  await Promise.allSettled(JOURNALS.map(j =>
-    fetchOne(j).then(p => {
-      papers.push(p);
-      done++;
-      setProgress(Math.round(done / JOURNALS.length * 45),
-        `${done}/${JOURNALS.length} 저널 수집 완료`);
-    })
-  ));
-
-  // sort to original order, assign IDs
-  papers.sort((a, b) =>
-    JOURNALS.findIndex(j => j.id === a.journal.id) -
-    JOURNALS.findIndex(j => j.id === b.journal.id)
-  );
-  papers.forEach((p, i) => p._id = i);
-  renderGrid();
-
-  // 2) Translate abstracts — sequential to respect free API rate limit
-  const valid = papers.filter(p => p.title && p.abstract);
-  for (let i = 0; i < valid.length; i++) {
-    await translate(valid[i]);
-    setProgress(45 + Math.round((i + 1) / valid.length * 50),
-      `번역 중 ${i + 1}/${valid.length}`);
-    // small delay between calls to be polite to the free API
-    if (i < valid.length - 1) await sleep(300);
-  }
-
-  // 3) Build briefing from translated summaries
-  buildBriefing();
-
-  setProgress(100, '완료!');
-  setTimeout(() => showProg(false), 900);
-
-  btn.disabled = false; btn.textContent = '🔄 새 논문 보기';
-  busy = false;
-}
-
-// ================================================================
-// CrossRef fetch — with progressive fallback queries
-// ================================================================
-
-// Multiple query tiers: specific → broad → journal-only
-function buildQueryTiers(j) {
-  const custom = customKeyword.trim();
-  const base   = BASE_TOPICS;
-  const jq     = j.q;
-  const tiers  = [];
-
-  // Tier 1: custom keyword (if any) + base + journal-specific
-  if (custom) tiers.push(`${custom} ${base} ${jq}`);
-  // Tier 2: base topics + journal-specific
-  tiers.push(`${base} ${jq}`);
-  // Tier 3: just base topics (broad)
-  tiers.push(base);
-  // Tier 4: broad materials/AI/engineering terms — explicitly non-bio
-  tiers.push('materials machine learning device semiconductor photovoltaic actuator sensor electronics');
-
-  return tiers;
-}
-
-async function fetchOne(j) {
-  const tiers = buildQueryTiers(j);
-
-  for (const query of tiers) {
-    try {
-      const url = `${CR}/${j.issn}/works?query=${encodeURIComponent(query)}` +
-        `&filter=from-pub-date:2019-01-01,type:journal-article,has-abstract:1` +
-        `&sort=relevance&rows=100` +
-        `&select=DOI,title,author,published,abstract,URL&${MAILTO}`;
-
-      const r = await fetch(url, { signal: AbortSignal.timeout(20000) });
-      if (!r.ok) continue;
-      const d = await r.json();
-
-      const items = (d?.message?.items || []).filter(it =>
-        it.title?.[0] && it.title[0].length > 20 &&
-        it.abstract && it.abstract.length > 80
-      );
-      if (!items.length) continue; // try next tier
-
-      // Truly random pick — different every load
-      const pick = items[Math.floor(Math.random() * items.length)];
-      const authors = (pick.author || []).slice(0, 4)
-        .map(a => `${a.family || ''} ${(a.given || '').charAt(0)}.`.trim())
-        .join(', ') + ((pick.author?.length || 0) > 4 ? ' et al.' : '');
-      const year = pick.published?.['date-parts']?.[0]?.[0] || '';
-      const doi  = pick.DOI || '';
-      const link = doi ? `https://doi.org/${doi}` : (pick.URL || '#');
-      const abstract = (pick.abstract || '')
-        .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-
-      return { journal: j, title: pick.title[0], authors, year, doi, link, abstract, summaryKo: null, _id: null };
-    } catch (err) {
-      continue; // try next tier
-    }
-  }
-  // All tiers failed
-  return { journal: j, title: null, error: '수집 실패 (모든 쿼리 시도 후 결과 없음)', _id: null };
-}
-
-// ================================================================
-// Translation — Google Translate (unofficial, no key needed)
-// Falls back to MyMemory, then original text
-// ================================================================
-async function translate(p) {
-  const text = p.abstract;
-  const chunks = splitChunks(text, 4500); // Google supports up to ~5000 chars
-  const translated = [];
-
-  for (let i = 0; i < chunks.length; i++) {
-    const result = await translateChunk(chunks[i]);
-    translated.push(result);
-    if (i < chunks.length - 1) await sleep(300);
-  }
-
-  const joined = translated.join(' ').trim();
-  p.summaryKo = isKorean(joined) ? joined : '(번역 실패) ' + text;
-  patchCard(p);
-}
-
-function splitChunks(text, maxLen) {
-  if (text.length <= maxLen) return [text];
-  const sentences = text.match(/[^.!?]+[.!?]+\s*/g) || [text];
-  const chunks = [];
-  let cur = '';
-  for (const s of sentences) {
-    if (cur.length + s.length > maxLen && cur) {
-      chunks.push(cur.trim());
-      cur = s;
-    } else {
-      cur += s;
-    }
-  }
-  if (cur.trim()) chunks.push(cur.trim());
-  const result = [];
-  for (const ch of chunks) {
-    if (ch.length <= maxLen) { result.push(ch); continue; }
-    for (let j = 0; j < ch.length; j += maxLen) result.push(ch.slice(j, j + maxLen));
-  }
-  return result;
-}
-
-async function translateChunk(text) {
-  // ── 1st try: Google Translate unofficial endpoint ──
-  try {
-    const url = 'https://translate.googleapis.com/translate_a/single' +
-      '?client=gtx&sl=en&tl=ko&dt=t&q=' + encodeURIComponent(text);
-    const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    if (r.ok) {
-      const d = await r.json();
-      // Response: [[[translated, original, ...], ...], ...]
-      if (Array.isArray(d) && Array.isArray(d[0])) {
-        const t = d[0].map(seg => seg[0] || '').join('').trim();
-        if (isKorean(t) && t.length > 3) return t;
-      }
-    }
-  } catch (_) {}
-
-  // ── 2nd try: MyMemory ──
-  try {
-    const url = 'https://api.mymemory.translated.net/get' +
-      '?q=' + encodeURIComponent(text.slice(0, 500)) +
-      '&langpair=en%7Cko';
-    const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    if (r.ok) {
-      const d = await r.json();
-      if (d.responseStatus === 200) {
-        const t = (d.responseData?.translatedText || '').trim();
-        if (isKorean(t) && t.length > 3) return t;
-      }
-    }
-  } catch (_) {}
-
-  // ── Fallback: original text ──
-  return text;
-}
-
-// Check if string contains Korean characters
-function isKorean(s) {
-  return /[\uAC00-\uD7AF\u3131-\u318E]/.test(s);
-}
-
-// ================================================================
-// Build briefing from translated papers (no AI API needed)
-// ================================================================
-function buildBriefing() {
-  const valid = papers.filter(p => p.title);
-  if (!valid.length) return;
-
-  // Collect unique keywords from titles
-  const kw = extractKeywords(valid.map(p => p.title).join(' '));
-  const journals = valid.map(p => p.journal.short).join(', ');
-  const years = [...new Set(valid.map(p => p.year).filter(Boolean))].sort();
-
-  const briefEl = document.getElementById('briefText');
-  briefEl.className = '';
-  briefEl.innerHTML =
-    `오늘 <strong>${valid.length}개 저널</strong>(${journals})에서 ` +
-    `AI·재료·로봇 융합 분야 논문 ${valid.length}편을 선정했습니다. ` +
-    `${years.length ? years[0] + '~' + years[years.length-1] + '년' : ''} 출판된 논문들로, ` +
-    `주요 키워드는 <strong>${kw.slice(0,6).join(', ')}</strong> 등입니다. ` +
-    `각 카드의 한국어 번역을 참고하세요.`;
-}
-
-function extractKeywords(text) {
-  const stop = new Set(['the','a','an','of','in','for','to','and','with','on','by','from',
-    'is','are','was','were','that','this','which','be','as','at','we','our','these','their',
-    'using','used','based','via','into','or','not','can','have','has','been','its','it']);
-  const freq = {};
-  text.toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/)
-    .filter(w => w.length > 4 && !stop.has(w))
-    .forEach(w => { freq[w] = (freq[w]||0)+1; });
-  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([w])=>w);
-}
-
-// ================================================================
-// Render
-// ================================================================
-function renderGrid() {
-  const g = document.getElementById('grid');
-  const shown = curFilter === 'all'
-    ? papers
-    : papers.filter(p => p.journal.id === curFilter);
-
-  document.getElementById('pcount').textContent =
-    papers.length ? `${shown.filter(p => p.title).length} 논문` : '';
-
-  if (!papers.length) {
-    g.innerHTML = `<div class="empty"><span class="empty-icon">⏳</span><h3>수집 중...</h3><p>잠시만 기다려 주세요.</p></div>`;
-    return;
-  }
-  if (!shown.length) {
-    g.innerHTML = `<div class="empty"><span class="empty-icon">🔍</span><h3>해당 저널 없음</h3></div>`;
-    return;
-  }
-  g.innerHTML = shown.map((p, i) => cardHTML(p, i)).join('');
-}
-
-function cardHTML(p, i) {
-  const j = p.journal;
-  if (!p.title) {
-    return `<div class="card" style="animation-delay:${i*.05}s">
-      <div class="card-top" style="background:${j.color}55"></div>
-      <div class="card-body">
-        <div class="card-meta"><span class="jtag" style="background:${j.bg};color:${j.color}">${j.short}</span></div>
-        <div class="card-title" style="color:#aaa">수집 실패</div>
-        <div class="card-sum fail">⚠ ${x(p.error)}</div>
-      </div></div>`;
-  }
-
-  const doi = p.doi ? (p.doi.length > 40 ? p.doi.slice(0,40)+'…' : p.doi) : '';
-  const sumPart = p.summaryKo
-    ? `<div class="sum-label">한국어 번역</div><div class="card-sum">${x(p.summaryKo)}</div>`
-    : `<div class="card-sum pend" id="s${p._id}"><span class="sp"></span>번역 중...</div>`;
-
-  return `<div class="card" data-j="${x(j.id)}" style="animation-delay:${i*.05}s">
-    <div class="card-top" style="background:linear-gradient(90deg,${j.color},${j.color}77)"></div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="jtag" style="background:${j.bg};color:${j.color};border:1px solid ${j.color}44">${j.short}</span>
-        ${p.year ? `<span class="ytag">${p.year}</span>` : ''}
+/* ══ RENDER NEWS LIST ══ */
+function renderSkeleton(gid, count, cls){
+  const g=document.getElementById(gid);if(!g)return;
+  g.innerHTML=Array.from({length:count},(_,i)=>`
+    <div class="ncard ${cls}">
+      <div class="nc-head">
+        <div class="nc-num-badge">${i+1}</div>
+        <div class="nc-title-wrap">
+          <div class="skel" style="margin-top:4px">
+            <div class="skel-line w80"></div>
+            <div class="skel-line w60" style="height:12px;margin-top:4px"></div>
+          </div>
+        </div>
       </div>
-      <div class="card-title">${x(p.title)}</div>
-      ${p.authors ? `<div class="card-auth">${x(p.authors)}</div>` : ''}
-      ${sumPart}
-      <div class="card-foot">
-        <div class="card-doi" title="${x(p.doi)}">${doi}</div>
-        <a href="${x(p.link)}" target="_blank" rel="noopener"
-           class="card-link" style="background:linear-gradient(135deg,${j.color},${j.color}bb)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-            <polyline points="15 3 21 3 21 9"/>
-            <line x1="10" y1="14" x2="21" y2="3"/>
-          </svg>원문
-        </a>
+      <div class="nc-body">
+        <div class="nc-divider"></div>
+        <div class="skel">
+          <div class="skel-line w95"></div><div class="skel-line w90"></div>
+          <div class="skel-line w85"></div><div class="skel-line w95"></div>
+          <div class="skel-line w80"></div><div class="skel-line w90"></div>
+          <div class="skel-line w70"></div><div class="skel-line w85"></div>
+          <div class="skel-line w95"></div><div class="skel-line w75"></div>
+        </div>
       </div>
-    </div>
-  </div>`;
+    </div>`).join('');
 }
 
-function patchCard(p) {
-  const el = document.getElementById(`s${p._id}`);
-  if (el) el.outerHTML =
-    `<div class="sum-label">한국어 번역</div><div class="card-sum">${x(p.summaryKo)}</div>`;
+function renderNews(gid, articles, cls){
+  const g=document.getElementById(gid);if(!g)return;
+  if(!articles?.length){g.innerHTML='<p style="color:var(--t4);padding:20px">기사를 불러오지 못했습니다.</p>';return;}
+  g.innerHTML=articles.map((a,i)=>`
+    <div class="ncard ${cls}">
+      <div class="nc-head">
+        <div class="nc-num-badge">${i+1}</div>
+        <div class="nc-title-wrap">
+          <div class="nc-meta">
+            <span class="nc-src">${esc(a.source||'')}</span>
+            <span class="nc-date">${esc(a.date||todayStr())}</span>
+            <span class="nc-fresh">NEW</span>
+          </div>
+          <div class="nc-title">${esc(a.title||'')}</div>
+        </div>
+      </div>
+      <div class="nc-body">
+        <div class="nc-divider"></div>
+        <div class="nc-ai-tag">🤖 AI 생성 뉴스</div>
+        <div class="nc-content">
+          ${(a.sentences||[]).map(s=>`<span class="sent">${esc(s)}</span>`).join('')}
+        </div>
+      </div>
+    </div>`).join('');
 }
 
-// ================================================================
-// Filter / helpers
-// ================================================================
-// ================================================================
-// KEYWORD UPDATE
-// ================================================================
-function applyKeyword() {
-  const input = document.getElementById('kwInput');
-  const val = input.value.trim();
-  customKeyword = val;
-  renderChips();
-  // reload everything with new keyword
-  load();
+function renderYT(gid, vids){
+  const g=document.getElementById(gid);if(!g)return;
+  g.innerHTML=vids.map(v=>`
+    <div class="yc" onclick="openV('${esc(v.id)}')">
+      <div class="yt-tw">
+        <img src="https://img.youtube.com/vi/${esc(v.id)}/hqdefault.jpg" loading="lazy"
+          onerror="this.src='https://img.youtube.com/vi/${esc(v.id)}/mqdefault.jpg'">
+        <div class="yt-pl">▶</div>
+      </div>
+      <div class="yc-body">
+        <div class="yc-ch">${esc(v.channel)}</div>
+        <div class="yc-title">${esc(v.title)}</div>
+        <div class="yc-date">${esc(v.date)}</div>
+      </div>
+    </div>`).join('');
 }
 
-function renderChips() {
-  const chips = document.getElementById('kwChips');
-  const baseList = BASE_TOPICS.split(', ').length > 1
-    ? BASE_TOPICS.split(' ')
-        .reduce((a, w) => { /* group back into phrases roughly */
-          if (a.length && a[a.length-1].split(' ').length < 2 && w.length > 3) {
-            a[a.length-1] += ' ' + w; return a;
-          }
-          a.push(w); return a;
-        }, [])
-    : [BASE_TOPICS];
+/* ══ SUMMARY PANEL ══ */
+function buildSummary(ko,en,vb,yt){
+  const today=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+  const t1=ko[0]?.title||'';const t2=en[0]?.title||'';const t3=vb[0]?.title||'';
+  document.getElementById('sumText').innerHTML=
+    `<strong>${today}</strong> Claude AI가 최신 한국 AI 뉴스 <strong>${ko.length}건</strong>, 해외 영문 뉴스 <strong>${en.length}건</strong>, Vibe Coding <strong>${vb.length}건</strong>, YouTube <strong>${yt.length}개</strong>를 생성했습니다.<br><br>`+
+    (t1?`🇰🇷 <strong>${esc(t1.slice(0,65))}...</strong><br>`:'')+
+    (t2?`🌐 <strong>${esc(t2.slice(0,65))}...</strong><br>`:'')+
+    (t3?`⚡ <strong>${esc(t3.slice(0,65))}...</strong>`:'')+
+    '<br><br>새로고침할 때마다 완전히 새로운 기사가 생성됩니다.';
+  const kws=xkw([...ko,...en,...vb].map(a=>a.title));
+  document.getElementById('sumTags').innerHTML=kws.slice(0,9).map(k=>`<div class="tag">#${esc(k)}</div>`).join('');
+}
+function xkw(ts){
+  const s=new Set(['the','a','an','is','in','of','for','to','and','on','with','at','by','이','가','을','를','은','는','한','의','로','에서','기','이나','등','및','ai','AI','its','it','new','how','that','this','from','are','was','but','has','have']);
+  const f={};ts.join(' ').split(/[\s,.\-:;()'"!?\|\/\[\]]+/).forEach(w=>{const c=w.replace(/[^가-힣a-zA-Z0-9]/g,'');if(c.length>2&&!s.has(c))f[c]=(f[c]||0)+1;});
+  return Object.entries(f).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
+}
 
-  const baseTopics = [
-    'soft robotics','functional materials','machine learning',
-    'smart contact lens','perovskite','image sensing',
-    'meniscus guided printing','electrochromic',
-    'wearable sensor','flexible electronics'
-  ];
+/* ══ MAIN LOAD ══ */
+async function loadAll(){
+  const btn=document.getElementById('refBtn');
+  btn.classList.add('spin');btn.disabled=true;
+  document.getElementById('upd').textContent='Claude AI 뉴스 생성 중...';
+  setProgress(5);
 
-  let html = '';
-  if (customKeyword) {
-    html += `<span class="kw-chip active">✦ ${x(customKeyword)}</span>`;
+  // Show skeletons immediately
+  renderSkeleton('kG',10,'ko'); renderSkeleton('kG2',10,'ko');
+  renderSkeleton('eG',10,'en'); renderSkeleton('eG2',10,'en');
+  renderSkeleton('vG',5,'vb');  renderSkeleton('vG2',5,'vb');
+
+  // YT is instant
+  const yt=pickYT();
+  renderYT('yG',yt); renderYT('yG2',yt);
+  document.getElementById('yN').textContent=yt.length+'개';
+  setProgress(15);
+
+  let ko=[],en=[],vb=[];
+  try{
+    // Run all three in parallel
+    document.getElementById('upd').textContent='🇰🇷 한국어 기사 생성 중...';
+    const [koRes,enRes,vbRes]=await Promise.allSettled([
+      generateKoNews(),
+      generateEnNews(),
+      generateVbNews()
+    ]);
+    setProgress(80);
+
+    ko=koRes.status==='fulfilled'?koRes.value:[];
+    en=enRes.status==='fulfilled'?enRes.value:[];
+    vb=vbRes.status==='fulfilled'?vbRes.value:[];
+
+    renderNews('kG',ko,'ko'); renderNews('kG2',ko,'ko');
+    renderNews('eG',en,'en'); renderNews('eG2',en,'en');
+    renderNews('vG',vb,'vb'); renderNews('vG2',vb,'vb');
+
+    document.getElementById('kN').textContent=ko.length+'개';
+    document.getElementById('eN').textContent=en.length+'개';
+    document.getElementById('vN').textContent=vb.length+'개';
+
+    buildSummary(ko,en,vb,yt);
+    document.getElementById('upd').textContent=
+      '생성 완료: '+new Date().toLocaleTimeString('ko-KR')+
+      ` · KO:${ko.length} EN:${en.length} VB:${vb.length} YT:${yt.length}`;
+    setProgress(100);
+
+  }catch(err){
+    console.error(err);
+    document.getElementById('upd').textContent='오류: '+err.message;
+    setProgress(100);
   }
-  baseTopics.forEach(t => {
-    html += `<span class="kw-chip">${x(t)}</span>`;
-  });
-  chips.innerHTML = html;
+
+  btn.classList.remove('spin');btn.disabled=false;
 }
 
-function setFilter(btn, f) {
-  document.querySelectorAll('.ftag').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  curFilter = f;
-  renderGrid();
-}
-function showProg(v) { document.getElementById('progWrap').style.display = v ? 'block' : 'none'; }
-function setProgress(pct, msg) {
-  document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progMsg').textContent = msg;
-}
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-function x(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+/* ══ MODAL ══ */
+function openV(id){document.getElementById('vFr').src=`https://www.youtube.com/embed/${id}?autoplay=1`;document.getElementById('vMod').classList.add('on');document.body.style.overflow='hidden';}
+function closeV(){document.getElementById('vMod').classList.remove('on');document.getElementById('vFr').src='';document.body.style.overflow='';}
+document.getElementById('vMod').addEventListener('click',e=>{if(e.target===e.currentTarget)closeV();});
+
+/* ══ TABS ══ */
+function gTab(id,btn){
+  document.querySelectorAll('.tc').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(e=>e.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');btn.classList.add('on');
 }
 
-// ================================================================
-// INIT
-// ================================================================
-(function() {
-  const d = new Date();
-  document.getElementById('hdate').textContent =
-    d.toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'short' });
-  document.title = `AI×Materials Daily — ${d.toLocaleDateString('ko-KR',{month:'long',day:'numeric'})}`;
-  renderChips();
-  load();
-})();
+/* ══ INIT ══ */
+window.addEventListener('DOMContentLoaded', loadAll);
 </script>
 
 </body>
